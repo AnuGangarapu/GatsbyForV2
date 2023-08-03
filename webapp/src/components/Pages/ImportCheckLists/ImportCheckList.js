@@ -213,14 +213,13 @@ export default class ImportCheckList extends Component {
       <div>
         {this.props.tabName === "Checklist" ? (
         
-          <>
+        
             <Checklist/>
-          {/* <LeftNavigation invoicesData={invoiceData} homeData={homeData} />
-          <AddItemDetails  name={'Job Details'} SectionFields={JobDetailsSectionFields} dataInfo={{}} data={data}/> */}
+       
  
  
  
-          </>
+        
         ) : (
           ""
         )}

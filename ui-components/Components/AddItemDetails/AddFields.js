@@ -19,22 +19,7 @@ function AddFields(props) {
   const handleDataUpdate = (id,name,value) => {
    
 
-//    const fieldIndex = fields.findIndex((field) =>
-//    field.input.some((input) => input.name === name)
-//  );
-  
-//     if (fieldIndex !== -1) {
-//       updateFieldAndValidate(
-//         fieldIndex,
-//         value,
-//         fields,
-//         setFields,
-//         ImportvalidationSchema,
-//         name
-//       );
 
-    
-//   }
   
   setBulkData((prevData) => ({
 

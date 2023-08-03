@@ -1,12 +1,12 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
-import Layout from "../components/layout"
+import CgateAppShell from "../components/CgateAppShell"
 import Seo from "../components/seo"
 
 const UsingSSR = ({ serverData }) => {
   return (
-    <Layout>
+    <CgateAppShell>
       <h1>
         This page is <b>rendered server-side</b>
       </h1>
@@ -28,7 +28,7 @@ const UsingSSR = ({ serverData }) => {
         .
       </p>
       <Link to="/">Go back to the homepage</Link>
-    </Layout>
+    </CgateAppShell>
   )
 }
 

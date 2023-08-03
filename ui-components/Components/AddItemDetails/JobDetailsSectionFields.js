@@ -57,16 +57,16 @@ const SectionFields = [
           type: "dropDown",
           name: "createdBy",
           add: true,
-          width: "45%",
+          width: "100%",
           placeholder:'Created By'
         },
-        { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
-        {
-            labelName: "date",
-            type: "textField",
-            name: "date",
-            width: "45%",
-          },
+        // { labelName: "CodeNumber", type: "separator", name: "", width: "5%" },
+        // {
+        //     labelName: "date",
+        //     type: "textField",
+        //     name: "date",
+        //     width: "45%",
+        //   },
       ],
     },
     {
