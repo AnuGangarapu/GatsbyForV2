@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import CgateAppShell from "../components/CgateAppShell"
-import Seo from "../components/seo"
+
 
 const NotFoundPage = () => (
   <CgateAppShell>
