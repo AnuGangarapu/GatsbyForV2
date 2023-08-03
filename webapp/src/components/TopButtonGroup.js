@@ -56,9 +56,7 @@ let tabName
     setJobListCurrentTab(newValue);
     tabName=tabsData[newValue].name
     setTabName(tabName)
-    if(tabName==="Checklist"){
-      navigate("/jobs/import/checklist");
-    }
+  
     props.setSelectedTabName(tabName)
     localStorage.setItem('tabName', JSON.stringify(tabName));
 
@@ -86,7 +84,7 @@ let tabName
       </Grid>
     )}
 
-    {/* {tabNameSelect === 'Checklist' ? <ImportCheckList tabName={tabName1} /> : null} */}
+    
   </>
   );
 }

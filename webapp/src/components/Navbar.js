@@ -5,6 +5,7 @@ import { Grid } from "@mui/material";
 import TopLeft from './TopLeft'
 import TopButtonGroup from "./TopButtonGroup";
 import TopRight from "./TopRight";
+import ImportCheckList from "./Pages/ImportCheckLists/ImportCheckList";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -58,7 +59,7 @@ const tabsData2 = [
 
 const TopNavigation = (props) => {
   const[selectedTabName,setSelectedTabName]=React.useState('')
-  console.log('props',props)
+  console.log('selectedTabName',selectedTabName)
   const urlParams = new URLSearchParams(window.location.search);
   let id = urlParams.get('id');
 
@@ -99,7 +100,8 @@ const TopNavigation = (props) => {
         </Grid>
       </Grid>
     </Grid>
-    {props.children}
+    {/* {props.children} */}
+    {selectedTabName==='Checklist'?<ImportCheckList tabName={selectedTabName}/>:props.children}
     </>
 
   );

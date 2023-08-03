@@ -17,15 +17,7 @@ const tabsData2 = [
 
 const Layout = ({ element, props }) => {
   if (props.location.pathname.match(/^\/app/)) {
-  //   let data={}
-  //   if (props.location.pathname='app/job/import'){
-  //     data={sentinelIcon:true,
-  //     selectOptions:true,
-  //     jobNo:"ICB/1363/2023-24",
-  //     tabsData:tabsData2}
-
-  //  }
-  //  let newData={...props,...data}
+ 
   let items = props.location.pathname.includes("import")?'Import':'MyJobs'
 
   localStorage.setItem('items', JSON.stringify(items));

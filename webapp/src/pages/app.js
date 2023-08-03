@@ -5,7 +5,7 @@ import MyJobs from "../components/Pages/MyJobs/MyJobs"
 import { Router } from "@reach/router"
 import PrivateRoute from "../components/api/PrivateRoute"
 import ImportCheckList from "../components/Pages/ImportCheckLists/ImportCheckList"
-import Checklist from "../components/Pages/ImportCheckLists/Checklist"
+//import Checklist from "../components/Pages/ImportCheckLists/Checklist"
 
 const App = () => {
   return(
