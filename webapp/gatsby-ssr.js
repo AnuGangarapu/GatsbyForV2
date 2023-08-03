@@ -9,8 +9,8 @@
  */
 
 
-import Layout from "./src/components/layout";
+import CgateAppShell from "./src/components/CgateAppShell";
 
 
 
-export const wrapPageElement=Layout
+export const wrapPageElement=CgateAppShell

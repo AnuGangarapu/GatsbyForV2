@@ -5,8 +5,8 @@
  */
 // You can delete this file if you're not using it
 
-import Layout from "./src/components/layout";
+import CgateAppShell from "./src/components/CgateAppShell";
 
 
 
-export const wrapPageElement=Layout
+export const wrapPageElement=CgateAppShell
