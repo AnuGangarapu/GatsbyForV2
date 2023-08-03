@@ -65,7 +65,9 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     "& .css-12i7wg6-MuiPaper-root-MuiDrawer-paper": {
       marginRight: "21px ",
-      // height:"90vh",
+      marginTop:'48px',
+      height:"95vh",
+  
     },
   },
   drawerOpen: {
@@ -151,7 +153,7 @@ const useStyles = makeStyles((theme) => ({
   arrow: {
     position: "fixed",
     left: "48px",
-    top: "17px",
+    top: "65px",
     background: "#FFFFFF",
     fill: "#626776 !important",
     boxShadow: "0px 0px 13px #EEEEF8",
@@ -162,7 +164,7 @@ const useStyles = makeStyles((theme) => ({
   arrow2: {
     position: "fixed",
     left: "226px",
-    top: "16px",
+    top: "65px",
     background: "#FFFFFF",
     fill: "#626776 !important",
     boxShadow: "0px 0px 13px #EEEEF8",
@@ -320,9 +322,11 @@ const LeftNavigation = (props) => {
 
   const handleDrawerOpen = () => {
     setOpen(true);
+    props.isSetOpened(true)
   };
   const handleDrawerClose = () => {
     setOpen(false);
+    props.isSetOpened(false)
   };
 
   const handleAddSection = ()=>{
