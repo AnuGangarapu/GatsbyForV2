@@ -1,4 +1,4 @@
-import * as React from "react"
+import  React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import MyJobs from "../components/Pages/MyJobs/MyJobs"
@@ -18,3 +18,10 @@ const App = () => {
 }
 export default App
 
+{/* <PrivateRoute path='/jobs/import' component={
+  <React.Suspense fallback='Loading...'>
+    <LazyImportCheckList/>
+  </React.Suspense>
+
+  
+  } pageTitle="ImportCheckList" /> */}

@@ -87,7 +87,7 @@ const TopNavigation = (props) => {
 
   return (
     <>
-    <Grid style={{ display:"flex",alignItems:'flex-start',justifyContent:"center"}} >
+    <Grid style={{ display:"flex",alignItems:'flex-start',justifyContent:"center",position:'sticky',top:'0',zIndex:'1000'}} >
       <Grid container className={classes.topNavigation}>
         <Grid item xs={4} className={classes.topNavLeft}>
           <TopLeft sentinelIcon={sentinelIcon} selectOptions={selectOptions} jobNo={jobNo} />

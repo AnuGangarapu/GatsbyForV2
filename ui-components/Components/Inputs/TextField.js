@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { InputAdornment } from '@mui/material';
 import { makeStyles } from "@mui/styles";
-import errorImg from './Images/errorImg.svg'
+import errorImg from '../Images/errorImg.svg'
 //import { boolean } from 'joi';
 
 const useStyles = makeStyles((theme) => ({

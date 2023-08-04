@@ -344,6 +344,8 @@ const handleData = (sectionIds) => {
   })
   setData(filteredAddData)
   setOpenFilter(false)
+  console.log('chbh',filteredAddData)
+  props.setLeftNavigationFields(filteredAddData)
   
 }
 
