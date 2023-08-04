@@ -36,123 +36,123 @@ import epcg from "../Images/epcg.svg"
 import supportingDocuments from "../Images/supportingDocuments.svg"
 import statements from "../Images/statements.svg"
 const homeData = [
-    { name: "Job Details", checked: true, id: "jobDetails", icon: jobDetails },
-    // {
-    //   name: "Invoice Details",
-    //   checked: true,
-    //   id: "invoiceDetails",
-    //   icon: invoiceDetails,
-    // },
+    { fieldName: "Job Details", checked: true, id: "jobDetails", icon: jobDetails, width: '302px' },
     {
-      name: "Commercial Tax Details",
+      fieldName: "Invoice Details",
+      checked: true,
+      id: "invoiceDetails",
+      icon: invoiceDetails,
+    },
+    {
+      fieldName: "Commercial Tax Details",
       checked: false,
       id: "commercialTaxDetails",
       icon: commercialTax,
     },
     {
-      name: "Exchange Rate",
+      fieldName: "Exchange Rate",
       checked: false,
       id: "exchangeRate",
       icon: exchangeRates,
     },
     {
-      name: "Bond Details",
+      fieldName: "Bond Details",
       checked: false,
       id: "bondDetails",
       icon: bondDetails,
     },
     {
-      name: "Certificate Details",
+      fieldName: "Certificate Details",
       checked: false,
       id: "certificateDetails",
       icon: certificateDetails,
     },
-    { name: "IGM Details", checked: false, id: "igmDetails", icon: igmDetails },
+    { fieldName: "IGM Details", checked: false, id: "igmDetails", icon: igmDetails },
     {
-      name: "Container Details",
+      fieldName: "Container Details",
       checked: false,
       id: "container Details",
       icon: containerDetails,
     },
     {
-      name: "Other Charges",
+      fieldName: "Other Charges",
       checked: false,
       id: "otherCharges",
       icon: otherCharges,
     },
-    { name: "HSS Details", checked: false, id: "hssDetails", icon: hssDetails },
-    { name: "End Use", checked: false, id: "endUse", icon: endUse },
+    { fieldName: "HSS Details", checked: false, id: "hssDetails", icon: hssDetails },
+    { fieldName: "End Use", checked: false, id: "endUse", icon: endUse },
     {
-      name: "Licence Details",
+      fieldName: "Licence Details",
       checked: false,
       id: "licenceetails",
       icon: licenseDetails,
     },
-    { name: "ReExport", checked: false, id: "reExport", icon: reExport },
+    { fieldName: "ReExport", checked: false, id: "reExport", icon: reExport },
     {
-      name: "Single Window Info",
+      fieldName: "Single Window Info",
       checked: false,
       id: "singleWindowInfo",
       icon: swInfo,
     },
     {
-      name: "Single Window Control",
+      fieldName: "Single Window Control",
       checked: false,
       id: "singleWindowControl",
       icon: swControl,
     },
     {
-      name: "Single Window Production",
+      fieldName: "Single Window Production",
       checked: false,
       id: "singleWindowProduction",
       icon: swProduction,
     },
     {
-      name: "Single Window Constutient",
+      fieldName: "Single Window Constutient",
       checked: false,
       id: "singleWindowConstutient",
       icon: swConstituent,
     },
-    { name: "RODTEP", checked: false, id: "rodtep", icon: rodtep },
-    { name: "DFIA", checked: false, id: "dfia", icon: dfia },
-    { name: "DEEC", checked: false, id: "deec", icon: deec },
-    { name: "AR4 Details", checked: false, id: "ar4Details", icon: ar4Details },
+    { fieldName: "RODTEP", checked: false, id: "rodtep", icon: rodtep },
+    { fieldName: "DFIA", checked: false, id: "dfia", icon: dfia },
+    { fieldName: "DEEC", checked: false, id: "deec", icon: deec },
+    { fieldName: "AR4 Details", checked: false, id: "ar4Details", icon: ar4Details },
     {
-      name: "Third Party Details",
+      fieldName: "Third Party Details",
       checked: false,
       id: "thirddPartyDetails",
       icon: thirdPartyDetails,
     },
     {
-      name: "Packing Details",
+      fieldName: "Packing Details",
       checked: false,
       id: "packingDetails",
       icon: packingDetails,
     },
-    { name: "Cess", checked: false, id: "cess", icon: cess },
+    { fieldName: "Cess", checked: false, id: "cess", icon: cess },
     {
-      name: "IGST Payment",
+      fieldName: "IGST Payment",
       checked: false,
       id: "igstPayment",
       icon: igstPayment,
     },
     {
-      name: "Drawback Details ",
+      fieldName: "Drawback Details ",
       checked: false,
       id: "drawbackDetails",
       icon: drawbackDetails,
     },
-    { name: "depb", checked: false, id: "depb", icon: depb },
-    { name: "imDetails", checked: false, id: "imDetails", icon: imDetails },
-    { name: "ROSCTL", checked: false, id: "rosctl", icon: rostcl },
-    { name: "EPCG", checked: false, id: "epcg", icon: epcg },
+    { fieldName: "depb", checked: false, id: "depb", icon: depb },
+    { fieldName: "imDetails", checked: false, id: "imDetails", icon: imDetails },
+    { fieldName: "ROSCTL", checked: false, id: "rosctl", icon: rostcl },
+    { fieldName: "EPCG", checked: false, id: "epcg", icon: epcg },
     {
-      name: "Supporting Documents",
+      fieldName: "Supporting Documents",
       checked: false,
       id: "supportingDocuments",
       icon: supportingDocuments,
     },
-    { name: "Statements", checked: false, id: "statements", icon: statements },
+    { fieldName: "Statements", checked: false, id: "statements", icon: statements },
   ]
   
   const invoiceData = [
@@ -206,7 +206,7 @@ function Checklist() {
     const [isOpened,isSetOpened]=React.useState(true)
   return (
     <>
-    <LeftNavigation invoicesData={invoiceData} homeData={homeData} isSetOpened={isSetOpened}/>
+    <LeftNavigation invoicesData={invoiceData} homeData={homeData} isSetOpened={isSetOpened} data={data} />
     <AddFields name={'Job Details'} SectionFields={JobDetailsSectionFields} dataInfo={{}} data={data} isOpened={isOpened}/>
     </>
   )

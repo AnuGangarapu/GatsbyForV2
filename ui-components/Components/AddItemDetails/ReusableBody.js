@@ -115,7 +115,6 @@ function  ReusableBody(props) {
                icon={<AddIcon className={classes.iconStyle}/>}
               listData={fields}
               setFilterFields={setFields}
-              addFieldsTrue={true}
               handleData={props.handleData}
               filterName='Add Details'
             

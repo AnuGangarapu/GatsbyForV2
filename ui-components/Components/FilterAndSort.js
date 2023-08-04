@@ -262,7 +262,7 @@ return(<Box className={classes.failureCard}>
 </Box>)}
 
 export default function FilterAndSort(props) {
-  const {listData, filterName, icon} = props
+  const {listData, filterName, icon, data} = props
     const [dateSelected, setDateSelected] = useState(false)
     const [date, setDate] = useState('')
     const [isChecked, setCheckedStatus] = useState(false)
@@ -272,7 +272,6 @@ export default function FilterAndSort(props) {
     const [checkedList, setCheckedList] = useState([])
     const [openDialog ,setOpenDialog] = React.useState(false)
     const classes = useStyles()
-    const {data}= props
     const handleSearchInputChange = (searchInput) => {
     
          setSearchInput(searchInput)
@@ -330,36 +329,38 @@ export default function FilterAndSort(props) {
 
     
  return(
- <Grid container className={classes.container} > 
+ <Grid container className={classes.container} >  
+
       <Grid container className={classes.iconContainer} onClick={handleOpen}>
          {/* <AddIcon className={classes.iconStyle}  /> */}
          {icon}
         <p className={classes.paragraph3}>{filterName}</p>
       </Grid>
-        <Grid style={{ position: "absolute", marginTop: "-2px", zIndex: "999" }}>
+        <Grid style={{ position: "fixed", marginTop: "-2px", zIndex: "999" }}>
             <Popover
-            className = {classes.popover}
-            open={openDialog}
-            setOpen={setOpenDialog}
-            height='auto'
-            ArrowPosition={data?.filterType === 'date' ? '194px': "16px"} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              className = {classes.popover}
+              open={openDialog}
+              setOpen={setOpenDialog}
+              height='auto'
+              ArrowPosition={data?.filterType === 'date' ? '194px': "16px"} 
+              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
             >
-        <h1 className={classes.heading}>Filter by</h1>
-        {data?.subFilterValues !== undefined ? <> <List classes={{root:classes.searchListContainer}}>{data.subFilterValues.map(each => <SearchTextBox text={each.label} key = {each.label} width={each.width} searchValue = {searchValue}backgroundColor='#242C40' border="none" handleSearchInputChange ={handleSearchInputChange} />)} 
-        </List > 
-        <p className={classes.results}>{listOfResults?.length} Results</p>
-        {listOfResults?.length === 0 ? <FailureView/> : <SuccessView listItems={listOfResults} handleAnyCheckboxClick={handleAnyCheckboxClick}/>}
-        </> : 
-       // <DateField dateSelected={dateSelected} filterType={data.filterType} handleDateTimeSelected = {handleDateTimeSelected}/>
-       <h1>DateField</h1>
-        }
-        <FooterButtons isChecked = {isChecked} handleCancel={handleCancel} handleApplyClick={handleApplyClick} dateSelected={dateSelected}/>
-        </Popover>
+            <h1 className={classes.heading}>Filter by</h1>
+            {props.data?.subFilterValues !== undefined ? <> <List classes={{root:classes.searchListContainer}}>{data.subFilterValues.map(each => <SearchTextBox text={each.label} key = {each.label} width={each.width} searchValue = {searchValue}backgroundColor='#242C40' border="none" handleSearchInputChange ={handleSearchInputChange} />)} 
+            </List > 
+            <p className={classes.results}>{listOfResults?.length} Results</p>
+            {listOfResults.length === 0 ? <FailureView/> : <SuccessView listItems={listOfResults} handleAnyCheckboxClick={handleAnyCheckboxClick}/>}
+            </> : 
+                // <DateField dateSelected={dateSelected} filterType={data.filterType} handleDateTimeSelected = {handleDateTimeSelected}/>
+                <h1>DateField</h1>
+            }
+          <FooterButtons isChecked = {isChecked} handleCancel={handleCancel} handleApplyClick={handleApplyClick} dateSelected={dateSelected}/>
+          </Popover>
         </Grid>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose} className={classes.snackBar} anchorOrigin={{ vertical: 'center', horizontal: 'center' }} >
-        <Alert onClose={handleClose} icon={<CheckCircleIcon className={classes.checkIcon}/>} className={classes.alertBox} sx={{backgroundColor: '#00B196'}}>
-        <p className={classes.alertMsg}>{`Job is Filtered based on ${data?.label} successfully`}</p>
-        </Alert>
+          <Alert onClose={handleClose} icon={<CheckCircleIcon className={classes.checkIcon}/>} className={classes.alertBox} sx={{backgroundColor: '#00B196'}}>
+            <p className={classes.alertMsg}>{`Job is Filtered based on ${data?.label} successfully`}</p>
+          </Alert>
         </Snackbar>
 </Grid>
  )
