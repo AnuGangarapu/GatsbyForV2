@@ -127,7 +127,7 @@ export default function SuccessView(props) {
         <p className="items-selected">{selectedItems} items selected</p>
       </div>
       <ul className={classes.listDataContainer}>
-        {secFields.map((each) => (
+        {secFields?.map((each) => (
           <li
             className="list-item"
             key={each.id}

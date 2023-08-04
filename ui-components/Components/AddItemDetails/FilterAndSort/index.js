@@ -313,8 +313,8 @@ export default function FilterAndSort(props) {
         <Popover
           open={openDialog}
           setOpen={setOpenDialog}
-          width={data.width}
-          height={data.height}
+          width={data?.width}
+          height={data?.height}
           ArrowPosition={"75px"}
           // ArrowPlaced={"425px"}
           //ArrowHeight={"10px"}
@@ -325,7 +325,7 @@ export default function FilterAndSort(props) {
 
           <>
             <ul className="search-list-container">
-              {data.subFilterValues.map((each) => (
+              {data?.subFilterValues?.map((each) => (
                 <SearchField
                   text={each.label}
                   key={each.label}
@@ -334,7 +334,7 @@ export default function FilterAndSort(props) {
                 />
               ))}
             </ul>
-            <p className="results">{listOfResults.length} Results</p>
+            <p className="results">{listOfResults?.length} Results</p>
             {renderAllViews()}
           </>
 
