@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import Checkbox from './Inputs/Checkbox';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Popover from './Inputs/ArrowDialogBox'
-import SearchTextBox from './SearchTextBox';
-import { List, ListItem, ListItemText } from '@mui/material';
+import SearchTextBox from './Inputs/SearchTextBox';
+import { List, ListItem, ListItemText, Typography } from '@mui/material';
 import { Box, listClasses } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import CloseIcon from '@mui/icons-material/Close';
@@ -16,12 +16,36 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import TextFields from './Inputs/Textfield';
 import {Grid} from '@mui/material';
 import Button from './Button'
+import AddIcon from "@mui/icons-material/Add";
 const useStyles = makeStyles({
  container: {
    display: 'flex',
    flexDirection: 'column'
 
  },
+ iconContainer: {
+  display: "flex !important",
+  alignItems: "center !important",
+  position: "relative !important",
+  left: "8px !important",
+  "&:hover": {
+    backgroundColor: "#FFFFFF !important",
+  },
+},
+iconStyle:{
+  color:'#3874FF',
+  width: "16px",
+  height: "16px", 
+  marginRight: "4px"
+},
+ paragraph3: {
+  fontFamily: "Inter !important",
+  fontStyle: "normal !important",
+  fontWeight: "600 !important",
+  fontSize: "12px !important",
+  lineHeight: "16px !important",
+  color: '#3874FF'
+},
  heading:{
    // height: "18px",
    fontFamily: 'Inter',
@@ -60,7 +84,7 @@ const useStyles = makeStyles({
    flexDirection:'column',
    justifyContent: 'center',
    alignItems: 'center',
-   width: '302px',
+   //width: '302px',
    height: '247px',
    flex: 'none',
    order: 1,
@@ -238,7 +262,7 @@ return(<Box className={classes.failureCard}>
 </Box>)}
 
 export default function FilterAndSort(props) {
-  const {listData} = props
+  const {listData, filterName, icon} = props
     const [dateSelected, setDateSelected] = useState(false)
     const [date, setDate] = useState('')
     const [isChecked, setCheckedStatus] = useState(false)
@@ -252,7 +276,7 @@ export default function FilterAndSort(props) {
     const handleSearchInputChange = (searchInput) => {
     
          setSearchInput(searchInput)
-            let filteredResults = listData.filter(item => item.label.toLowerCase().includes(searchValue.toLocaleLowerCase()))
+            let filteredResults = listData.filter(item => item.fieldName.toLowerCase().includes(searchValue.toLocaleLowerCase()))
             let checkedListIds = checkedList.filter(each => each.checked === true).map(each => each.id)
             let finalList = filteredResults.map(each => {
             if (checkedListIds.includes(each.id)){
@@ -307,9 +331,11 @@ export default function FilterAndSort(props) {
     
  return(
  <Grid container className={classes.container} > 
-  <Grid item>
-    <FilterListIcon onClick={handleOpen} sx={{ color: "#626776" }} />
-  </Grid>
+      <Grid container className={classes.iconContainer} onClick={handleOpen}>
+         {/* <AddIcon className={classes.iconStyle}  /> */}
+         {icon}
+        <p className={classes.paragraph3}>{filterName}</p>
+      </Grid>
         <Grid style={{ position: "absolute", marginTop: "-2px", zIndex: "999" }}>
             <Popover
             className = {classes.popover}
