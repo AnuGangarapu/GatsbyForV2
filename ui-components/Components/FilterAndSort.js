@@ -4,8 +4,6 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import Popover from './Inputs/ArrowDialogBox'
 import SearchTextBox from './Inputs/SearchTextBox';
 import { List, ListItem, ListItemText, Typography } from '@mui/material';
-import SearchTextBox from './Inputs/SearchTextBox';
-import { List, ListItem, ListItemText, Typography } from '@mui/material';
 import { Box, listClasses } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import CloseIcon from '@mui/icons-material/Close';

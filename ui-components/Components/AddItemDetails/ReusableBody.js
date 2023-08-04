@@ -112,19 +112,12 @@ function  ReusableBody(props) {
           <div style={{ alignSelf: "flex-start" }}>
             <FilterAndSort
               data={props.data}
-<<<<<<< HEAD
-=======
                icon={<AddIcon className={classes.iconStyle}/>}
->>>>>>> b9eabbf15ea7642ddccf0bde6ff7ede4ce9cccf0
               listData={fields}
               setFilterFields={setFields}
               addFieldsTrue={true}
               handleData={props.handleData}
-<<<<<<< HEAD
-              filterName='Item Details'
-=======
               filterName='Add Details'
->>>>>>> b9eabbf15ea7642ddccf0bde6ff7ede4ce9cccf0
             
             />
           </div>
