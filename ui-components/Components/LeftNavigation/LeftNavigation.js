@@ -13,7 +13,6 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import ShareIcon from '@mui/icons-material/Share';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import AddIcon from '@mui/icons-material/Add';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { makeStyles } from "@mui/styles";
 
@@ -25,9 +24,9 @@ import user from '../Images/user.svg'
 import addSection from '../Images/addSection.svg'
 
 
-import FilterAndSort from "./AddSection/AddSection";
+import FilterAndSort from "../FilterAndSort";
 import SearchTextBox from "./AddSection/SearchInputBox";
-
+import AddIcon from "@mui/icons-material/Add";
 
 const invoiceData =[
   {invNo:"A41984209"},
@@ -61,7 +60,14 @@ const invoiceData =[
   ]
 
 
+
 const useStyles = makeStyles((theme) => ({
+  iconStyle:{
+    color:'#3874FF',
+    width: "16px",
+    height: "16px", 
+    marginRight: "4px"
+  },
   drawer: {
     "& .css-12i7wg6-MuiPaper-root-MuiDrawer-paper": {
       marginRight: "21px ",
@@ -72,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerOpen: {
     width: "231px ",
-    // height:"100vh",
+    //height:"100vh",
     "& .MuiListItem-root":{
       width:"218px",
       height:"40px",
@@ -343,7 +349,7 @@ const handleData = (sectionIds) => {
     return add
   })
   setData(filteredAddData)
-  setOpenFilter(false)
+  //setOpenFilter(false)
   
 }
 
@@ -455,9 +461,9 @@ const handleAddItem =(event,index) => {
             } else {
               return (
                 (open && item.checked)?
-                <ListItem button key={item.name} style={{marginBottom:"8px"}}>
+                <ListItem button key={item.fieldName} style={{marginBottom:"8px"}}>
                   <ListItemIcon style={{minWidth:"24px",marginRight:"8px"}}>  <img src={item.icon} /> </ListItemIcon>
-                  <ListItemText>{item.name}</ListItemText>
+                  <ListItemText>{item.fieldName}</ListItemText>
                 </ListItem>:
                 item.checked &&
                 <ListItem style={{width:"40px",height:"40px",marginBottom:"8px"}}>
@@ -515,19 +521,24 @@ const handleAddItem =(event,index) => {
           className={open ? classes.drawerOpen : classes.drawerClose}
         >
           <ListItem style={{borderTop:"1px solid #EFF0F1",cursor:"pointer"}} onClick={handleAddSection} key="add-section">
-            <ListItemIcon>
-            <img src={addSection} alt="add Section"/>
+            {/* <ListItemIcon> */}
+            {/* <img src={addSection} alt="add Section"/>
             </ListItemIcon>
             {open && <ListItemText>Add Sections</ListItemText>}
             {filter && 
              <FilterAndSort
               myArray={data}
-              addFieldsTrue={true}
               openDialog={true}
               setOpenFilter={setOpenFilter}
               handleData={handleData}
-            />}
-
+            />} */}
+            <FilterAndSort
+                icon={<AddIcon className={classes.iconStyle}/>}
+               listData={data}
+               handleData={handleData}
+               filterName='Add Sections'
+                data={props.data}
+            />
           </ListItem>
         </List>
         :

@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     margin:'20px 0px 0px -8px',
     padding: '16px 16px 16px 16px',
     height: (props) => (props.height ? props.height : '300px'),
-    width: (props) => (props.width ? props.width : '300px'),
+    width: (props) => (props.width ? props.width : '318px'),
     backgroundColor: '#050e25',
     position: 'relative',
     top: '20px',
