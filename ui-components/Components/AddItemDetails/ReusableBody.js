@@ -1,5 +1,5 @@
 import React from 'react'
-import FilterAndSort from './FilterAndSort'
+import FilterAndSort from '../FilterAndSort'
 import ItemDetails  from '../Images/ItemDetails.svg'
 import { Typography,Grid } from '@mui/material';
 import AutoComplete from '../AutoComplete'
@@ -107,12 +107,11 @@ function  ReusableBody(props) {
           <div style={{ alignSelf: "flex-start" }}>
             <FilterAndSort
               data={props.data}
-            
-              filterFields={fields}
+              listData={fields}
               setFilterFields={setFields}
               addFieldsTrue={true}
               handleData={props.handleData}
-              name={'Item Details'}
+              filterName='Item Details'
             
             />
           </div>

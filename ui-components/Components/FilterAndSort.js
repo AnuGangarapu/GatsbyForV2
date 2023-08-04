@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import Checkbox from './Inputs/Checkbox';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Popover from './Inputs/ArrowDialogBox'
-import SearchTextBox from './SearchTextBox';
-import { List, ListItem, ListItemText } from '@mui/material';
+import SearchTextBox from './Inputs/SearchTextBox';
+import { List, ListItem, ListItemText, Typography } from '@mui/material';
 import { Box, listClasses } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import CloseIcon from '@mui/icons-material/Close';
@@ -22,6 +22,13 @@ const useStyles = makeStyles({
    flexDirection: 'column'
 
  },
+ paragraph: {
+  fontFamily: "Inter !important",
+  fontStyle: "normal !important",
+  fontWeight: "600 !important",
+  fontSize: "12px !important",
+  lineHeight: "16px !important",
+},
  heading:{
    // height: "18px",
    fontFamily: 'Inter',
@@ -60,7 +67,7 @@ const useStyles = makeStyles({
    flexDirection:'column',
    justifyContent: 'center',
    alignItems: 'center',
-   width: '302px',
+  //  width: '302px',
    height: '247px',
    flex: 'none',
    order: 1,
@@ -238,7 +245,7 @@ return(<Box className={classes.failureCard}>
 </Box>)}
 
 export default function FilterAndSort(props) {
-  const {listData} = props
+  const {listData, filterName} = props
     const [dateSelected, setDateSelected] = useState(false)
     const [date, setDate] = useState('')
     const [isChecked, setCheckedStatus] = useState(false)
@@ -252,7 +259,7 @@ export default function FilterAndSort(props) {
     const handleSearchInputChange = (searchInput) => {
     
          setSearchInput(searchInput)
-            let filteredResults = listData.filter(item => item.label.toLowerCase().includes(searchValue.toLocaleLowerCase()))
+            let filteredResults = listData.filter(item => item.fieldName.toLowerCase().includes(searchValue.toLocaleLowerCase()))
             let checkedListIds = checkedList.filter(each => each.checked === true).map(each => each.id)
             let finalList = filteredResults.map(each => {
             if (checkedListIds.includes(each.id)){
@@ -307,8 +314,9 @@ export default function FilterAndSort(props) {
     
  return(
  <Grid container className={classes.container} > 
-  <Grid item>
+  <Grid container>
     <FilterListIcon onClick={handleOpen} sx={{ color: "#626776" }} />
+    <Typography className={classes.paragraph}>{filterName}</Typography>
   </Grid>
         <Grid style={{ position: "absolute", marginTop: "-2px", zIndex: "999" }}>
             <Popover

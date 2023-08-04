@@ -2,11 +2,11 @@ const SectionFields = [
     {
       fieldName: "Part Code",
       id: "partCode",
-
+      
       checked:false,
       input: [
         {
-          labelName: "partCode",
+          label: "partCode",
           type: "textField",
           name: "partCode",
           width: "100%",
