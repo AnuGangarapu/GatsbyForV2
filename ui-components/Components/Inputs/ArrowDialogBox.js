@@ -4,6 +4,7 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   dialogBox: {
+    margin:'20px 0px 0px -8px',
     padding: '16px 16px 16px 16px',
     height: (props) => (props.height ? props.height : '300px'),
     width: (props) => (props.width ? props.width : '300px'),

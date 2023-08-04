@@ -1,5 +1,5 @@
 import React from 'react'
-import FilterAndSort from './FilterAndSort'
+import FilterAndSort from '../FilterAndSort'
 import ItemDetails  from '../Images/ItemDetails.svg'
 import { Typography,Grid } from '@mui/material';
 import AutoComplete from '../AutoComplete'
@@ -8,10 +8,15 @@ import {DialogContent} from '@mui/material';
 import {DialogContentText} from '@mui/material';
 import { makeStyles } from "@mui/styles";
 import NotFound from '../Images/NotFound.svg'
-
+import AddIcon from "@mui/icons-material/Add";
 
 const useStyles = makeStyles((theme) => ({
-  
+  iconStyle:{
+    color:'#3874FF',
+    width: "16px",
+    height: "16px", 
+    marginRight: "4px"
+  },
   container1: {
     //marginTop: "16px !important",
     padding: "24px",
@@ -107,12 +112,12 @@ function  ReusableBody(props) {
           <div style={{ alignSelf: "flex-start" }}>
             <FilterAndSort
               data={props.data}
-            
-              filterFields={fields}
+               icon={<AddIcon className={classes.iconStyle}/>}
+              listData={fields}
               setFilterFields={setFields}
               addFieldsTrue={true}
               handleData={props.handleData}
-              name={'Item Details'}
+              filterName='Add Details'
             
             />
           </div>
