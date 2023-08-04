@@ -8,10 +8,15 @@ import {DialogContent} from '@mui/material';
 import {DialogContentText} from '@mui/material';
 import { makeStyles } from "@mui/styles";
 import NotFound from '../Images/NotFound.svg'
-
+import AddIcon from "@mui/icons-material/Add";
 
 const useStyles = makeStyles((theme) => ({
-  
+  iconStyle:{
+    color:'#3874FF',
+    width: "16px",
+    height: "16px", 
+    marginRight: "4px"
+  },
   container1: {
     //marginTop: "16px !important",
     padding: "24px",
@@ -107,11 +112,19 @@ function  ReusableBody(props) {
           <div style={{ alignSelf: "flex-start" }}>
             <FilterAndSort
               data={props.data}
+<<<<<<< HEAD
+=======
+               icon={<AddIcon className={classes.iconStyle}/>}
+>>>>>>> b9eabbf15ea7642ddccf0bde6ff7ede4ce9cccf0
               listData={fields}
               setFilterFields={setFields}
               addFieldsTrue={true}
               handleData={props.handleData}
+<<<<<<< HEAD
               filterName='Item Details'
+=======
+              filterName='Add Details'
+>>>>>>> b9eabbf15ea7642ddccf0bde6ff7ede4ce9cccf0
             
             />
           </div>
