@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import { InputAdornment } from '@mui/material';
 import { makeStyles } from "@mui/styles";
-import errorImg from '../Images/errorImg.svg'
+import errorImg from '../Images/errorImg.svg'	
+//import { boolean } from 'joi';
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
     borderRadius: "4px",
-    width: "320px !important",
+     width: (styles) => styles?.width ? styles?.width: '540px',
     height: "24px !important",
     "& input::placeholder": {
       color:"#9497A1 !important",
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
     },
     borderRadius: "4px",
-    width: "320px !important",
+     width: (styles) => styles?.width ? styles?.width: '540px',
     height: "32px",
     "& input::placeholder": {
       color:"#9497A1 !important",
@@ -65,6 +66,9 @@ const useStyles = makeStyles((theme) => ({
   underline: {
     '&:hover:not(.Mui-disabled):before': {
       borderBottomColor: '#3874FF !important',
+    },
+    '&:not(:hover):not(.Mui-disabled):before': {
+      borderBottom: "1px solid #EFF0F1",
     },
   },
   mandatoryIcon:{
@@ -95,8 +99,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const TextFields = (props) => {
-  const classes = useStyles();
-  const { size,variant, placeholder, mandatory, iconType, helperText, showEndAdornment, showStartAdornment, isDisabled,disableLine,isNormalField ,value} = props
+  const classes = useStyles(props.styles);
+  const {size,variant, placeholder, mandatory, iconType, helperText, showEndAdornment, showStartAdornment, isDisabled,disableLine,isNormalField ,style,value,name,id,className ,error} = props
   const [read, setRead] = React.useState(false)
   const [data, setData] = useState(value)
   const [disable, setDisable] = React.useState(disableLine)
@@ -133,12 +137,14 @@ const TextFields = (props) => {
       placeholder={placeholder}
       helperText={helperText ? helperText : ""}
       onChange={handleChange}
+           // error = {Boolean(error)}
       onBlur={disable === false && handleDisable}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={isNormalField? classes.root1:classes.root}
       disabled={isDisabled}
       value={data}
+      style={{...className,...style}}
       FormHelperTextProps={{
         classes: {
           root: classes.helperText,

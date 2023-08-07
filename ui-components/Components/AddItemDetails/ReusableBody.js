@@ -2,8 +2,8 @@ import React from 'react'
 import FilterAndSort from '../FilterAndSort'
 import ItemDetails  from '../Images/ItemDetails.svg'
 import { Typography,Grid } from '@mui/material';
-import AutoComplete from '../AutoComplete'
-import TextField from '../TextField'
+import AutoComplete from '../Inputs/AutoComplete'
+import TextField from '../Inputs/Textfield'
 import {DialogContent} from '@mui/material';
 import {DialogContentText} from '@mui/material';
 import { makeStyles } from "@mui/styles";
