@@ -8,7 +8,7 @@ import InputBase from '@mui/material/InputBase';
 import ClearIcon from '@mui/icons-material/Clear';
 import {Box} from '@mui/material';
 
-import AutoComplete from '../../AutoComplete';
+import AutoComplete from '../../Inputs/AutoComplete'
 
 const useStyles = makeStyles({
    select:{ 

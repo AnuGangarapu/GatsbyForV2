@@ -2,9 +2,9 @@ import React from "react";
 import { makeStyles } from "@mui/styles";
 import { Grid } from "@mui/material";
 
-import TopLeft from './TopLeft'
-import TopButtonGroup from "./TopButtonGroup";
-import TopRight from "./TopRight";
+import TopLeft from '../../../ui-components/Components/Navbar/TopLeft'
+import TopButtonGroup from "../../../ui-components/Components/Navbar/TopButtonGroup";
+import TopRight from "../../../ui-components/Components/Navbar/TopRight";
 import ImportCheckList from "./Pages/ImportCheckLists/ImportCheckList";
 
 
@@ -87,7 +87,7 @@ const TopNavigation = (props) => {
 
   return (
     <>
-    <Grid style={{ display:"flex",alignItems:'flex-start',justifyContent:"center"}} >
+    <Grid style={{ display:"flex",alignItems:'flex-start',justifyContent:"center",position:'sticky',top:'0',zIndex:'1000'}} >
       <Grid container className={classes.topNavigation}>
         <Grid item xs={4} className={classes.topNavLeft}>
           <TopLeft sentinelIcon={sentinelIcon} selectOptions={selectOptions} jobNo={jobNo} />

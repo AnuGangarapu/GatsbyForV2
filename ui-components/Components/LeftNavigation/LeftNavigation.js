@@ -349,6 +349,8 @@ const handleData = (sectionIds) => {
   })
   setData(filteredAddData)
   //setOpenFilter(false)
+  props.setLeftNavigationFields(filteredAddData)
+  
   
 }
 
@@ -408,7 +410,7 @@ const handleDeleteInvoice = ()=>{
 const handleAddItem =(event,index) => {
   let initialSqNo = 0
   data.filter(invSq => invSq.sqNo >= initialSqNo ? (initialSqNo = invSq.sqNo, true) : false);
-  const newItem =  {invNo:"Untitled - "+(initialSqNo+1),sqNo:initialSqNo+1}
+  const newItem =  {invNo:"U.makeStyles-drawerOpen-3 .MuiListItem-rootntitled - "+(initialSqNo+1),sqNo:initialSqNo+1}
   const updatedData = [...data]
   updatedData.splice(index+1,0,newItem) 
   setData(updatedData)
@@ -532,6 +534,7 @@ const handleAddItem =(event,index) => {
               handleData={handleData}
             />} */}
             <FilterAndSort
+            display={props.position}
                 icon={<AddIcon className={classes.iconStyle}/>}
                listData={data}
                handleData={handleData}
