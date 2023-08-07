@@ -72,8 +72,7 @@ const useStyles = makeStyles((theme) => ({
     "& .css-12i7wg6-MuiPaper-root-MuiDrawer-paper": {
       marginRight: "21px ",
       marginTop:'48px',
-      height:"95vh",
-  
+      height: '95vh'
     },
   },
   drawerOpen: {
@@ -411,7 +410,7 @@ const handleDeleteInvoice = ()=>{
 const handleAddItem =(event,index) => {
   let initialSqNo = 0
   data.filter(invSq => invSq.sqNo >= initialSqNo ? (initialSqNo = invSq.sqNo, true) : false);
-  const newItem =  {invNo:"Untitled - "+(initialSqNo+1),sqNo:initialSqNo+1}
+  const newItem =  {invNo:"U.makeStyles-drawerOpen-3 .MuiListItem-rootntitled - "+(initialSqNo+1),sqNo:initialSqNo+1}
   const updatedData = [...data]
   updatedData.splice(index+1,0,newItem) 
   setData(updatedData)
@@ -541,7 +540,10 @@ const handleAddItem =(event,index) => {
                handleData={handleData}
                filterName='Add Sections'
                 data={props.data}
-                position={props.position}
+                transform='rotate(45deg) translate(-50%)'
+                boxPosition='translateY(-100%)'
+                ArrowPlaced='-12px'
+                top='-20px'
             />
           </ListItem>
         </List>

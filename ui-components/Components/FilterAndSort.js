@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import Checkbox from './Inputs/Checkbox';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import Popover from './Inputs/ArrowDialogBox'
+//import {Popover} from '@mui/material';
 import SearchTextBox from './Inputs/SearchTextBox';
 import { List, ListItem, ListItemText, Typography } from '@mui/material';
 import { Box, listClasses } from '@mui/material';
@@ -262,7 +263,7 @@ return(<Box className={classes.failureCard}>
 </Box>)}
 
 export default function FilterAndSort(props) {
-  const {listData, filterName, icon, data} = props
+  const {listData, filterName, icon, data, transform, boxPosition, ArrowPlaced, top} = props
     const [dateSelected, setDateSelected] = useState(false)
     const [date, setDate] = useState('')
     const [isChecked, setCheckedStatus] = useState(false)
@@ -329,21 +330,26 @@ export default function FilterAndSort(props) {
 
     
  return(
- <Grid container className={classes.container} >  
-
-      <Grid container className={classes.iconContainer} onClick={handleOpen}>
-         {/* <AddIcon className={classes.iconStyle}  /> */}
+ <Grid container className={classes.container}>  
+        <Grid container className={classes.iconContainer}onClick={handleOpen}>
          {icon}
         <p className={classes.paragraph3}>{filterName}</p>
       </Grid>
-        <Grid style={{ position: "fixed", marginTop: props.display==='top'?'-452px': "-2px", zIndex: "999" }}>
+        <Grid style={{ 
+          position: "fixed", marginTop: "-2px",
+           //zIndex: "999" 
+           }}>
             <Popover
               className = {classes.popover}
               open={openDialog}
               setOpen={setOpenDialog}
               height='auto'
               ArrowPosition={data?.filterType === 'date' ? '194px': "16px"} 
-              anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+              //anchorOrigin={{ vertical: 'top', horizontal: 'top' }}
+              transform={transform}
+              boxPosition={boxPosition}
+              ArrowPlaced={ArrowPlaced}
+              top={top}
             >
             <h1 className={classes.heading}>Filter by</h1>
             {props.data?.subFilterValues !== undefined ? <> <List classes={{root:classes.searchListContainer}}>{data.subFilterValues.map(each => <SearchTextBox text={each.label} key = {each.label} width={each.width} searchValue = {searchValue}backgroundColor='#242C40' border="none" handleSearchInputChange ={handleSearchInputChange} />)} 
@@ -440,7 +446,7 @@ export const SuccessView = ({listItems, handleAnyCheckboxClick}) => {
          <p className={classes.itemsSelected}>{selectedItems} items selected</p>
       </Grid>
       <List className={classes.listDataContainer} sx={{padding: '0px 0px 0px 0px'}}>
-         {checkedItems.map(each => <ListItem sx={{paddingLeft: '0px', borderBottom: '1px solid #32394C'}} key = {each.id} style = {each.checked ? {backgroundColor: '#242C40'}: null}><Checkbox id = {each.id} isChecked={each.checked}
+         {checkedItems.map(each => <ListItem sx={{paddingLeft: '0px', borderBottom: '1px solid #32394C', width: '100% !important'}} key = {each.id} style = {each.checked ? {backgroundColor: '#242C40'}: null}><Checkbox id = {each.id} isChecked={each.checked}
          classes={{root: classes.checkbox}}
          handleCheckboxChange = {handleCheckboxChange}
          /><label className={classes.listContent} htmlFor={each.id}>{each.fieldName}</label></ListItem>)}
