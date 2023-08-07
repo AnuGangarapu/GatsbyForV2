@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { TextField, Icon } from "@mui/material";
 import InputAdornment from "@mui/material/InputAdornment";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import errorImg from './Images/errorImg.svg'
+import errorImg from '../Images/errorImg.svg'
 
 
 const filter = createFilterOptions();

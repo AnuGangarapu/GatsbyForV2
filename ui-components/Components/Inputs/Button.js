@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import Skeleton  from "../Components/Images/Skeleton.svg";
+import Skeleton  from '../Images/Skeleton.svg'
 import "./Button.css";
 
 const CustomizedButton = (props) => {

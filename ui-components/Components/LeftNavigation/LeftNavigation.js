@@ -350,6 +350,8 @@ const handleData = (sectionIds) => {
   })
   setData(filteredAddData)
   //setOpenFilter(false)
+  props.setLeftNavigationFields(filteredAddData)
+  
   
 }
 
@@ -533,11 +535,13 @@ const handleAddItem =(event,index) => {
               handleData={handleData}
             />} */}
             <FilterAndSort
+            display={props.position}
                 icon={<AddIcon className={classes.iconStyle}/>}
                listData={data}
                handleData={handleData}
                filterName='Add Sections'
                 data={props.data}
+                position={props.position}
             />
           </ListItem>
         </List>

@@ -15,7 +15,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 //import DatePicker from './DatePicker/DatePIcker'
 import TextFields from './Inputs/Textfield';
 import {Grid} from '@mui/material';
-import Button from './Button'
+import Button from './Inputs/Button'
 import AddIcon from "@mui/icons-material/Add";
 const useStyles = makeStyles({
  container: {
@@ -336,7 +336,7 @@ export default function FilterAndSort(props) {
          {icon}
         <p className={classes.paragraph3}>{filterName}</p>
       </Grid>
-        <Grid style={{ position: "fixed", marginTop: "-2px", zIndex: "999" }}>
+        <Grid style={{ position: "fixed", marginTop: props.display==='top'?'-452px': "-2px", zIndex: "999" }}>
             <Popover
               className = {classes.popover}
               open={openDialog}
