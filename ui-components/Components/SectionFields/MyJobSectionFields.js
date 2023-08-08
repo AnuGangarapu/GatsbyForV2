@@ -30,7 +30,8 @@ const importColumns = [
           label: "Job Date & Time",
           filter: true,
           flexGrow: 1,
-          filterType:'Date&Time'
+          filterType:'Date&Time',
+          ArrowPosition:'301px'
         },
         {
           id: "transactionRefNo",
@@ -215,6 +216,8 @@ const importColumns = [
           display: true,
           label: "Assigned To",
           filter: true,
+          boxPosition:'translateX(-82%)',
+          ArrowPosition:'301px',
           flexGrow: 1,
           subFilterValues:[
             {
@@ -295,6 +298,9 @@ const importColumns = [
           default: true,
           display: true,
           label: "Created By",
+          filterType:'Date&Time',
+          boxPosition:'translateX(-85%)',
+          ArrowPosition:'395px',
           flexGrow: 1,
           left: "23px",
           filter: true,
@@ -309,6 +315,9 @@ const importColumns = [
           flexGrow: 1,
           left: "12px",
           filter: true,
+          filterType:'Date&Time',
+          boxPosition:'translateX(-85%)',
+          ArrowPosition:'395px',
         },
       ],
     },
