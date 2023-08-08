@@ -3,6 +3,7 @@ import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { TableVirtuoso } from "react-virtuoso";
 
 import React, {Suspense } from 'react';
+
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -10,6 +11,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+
+
+
+
+
+
 // import Joblisttablebody from "./TableBody";
 // import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
 // import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
@@ -386,7 +393,7 @@ const handleDataUpdate = (name, newValue, item, index) => {
   return (
     <div className={classes.tableContainer}>
       <div className={classes.table}>
-        <TableVirtuoso   className={`${classes.virtualizedTable} ${columns.length === 3 ? "table1" : columns.length === 2 ? "table2": ""}`}
+        <TableVirtuoso   key={props.key} className={`${classes.virtualizedTable} ${columns.length === 3 ? "table1" : columns.length === 2 ? "table2": ""}`}
           data={scrolledListData}
           components={TableComponents}
           fixedHeaderContent={() => (
@@ -646,3 +653,353 @@ const handleDataUpdate = (name, newValue, item, index) => {
     </div>
   );
 }
+// export default function ListTable(props) {
+//   const [headerCheckbox, setHeaderCheckbox] = React.useState(false);
+//   // const [accordionOpen, setAccordionOpen] = React.useState(false);
+//   const [isHovered, setIsHovered] = React.useState(false);
+//   const { columns, checkbox, hover } = props;
+//   const classes = useStyles();
+//   const [hoveredIndex, setIndex] = React.useState(null);
+//   const [eachAccordion, setEachAccordion] = React.useState(props.eachAccordion);
+//   const [scrolledListData,setScrolledListData]=React.useState(props.listData)
+//   console.log(scrolledListData,'swsdfvgbnjmn list data')
+ 
+//   const [selected, setSelected] = React.useState(() => {
+//     const initialAccordionState = [];
+//     props.listData.forEach((item, index) => {
+//       initialAccordionState.push(false)
+//     });
+//     return initialAccordionState;
+//   });
+//   //console.log('props.listData',props.listData)
+//   //console.log('Selected',selected)
+ 
+//   //console.log('selectedState in component did mount',selected)
+
+//   React.useEffect(() => {
+//     setScrolledListData(props.listData);
+//     let accordions=[]
+//     props.listData.forEach((item, index) => {
+//       accordions.push(false)
+//     });
+   
+//   }, [props.listData]);
+
+//   React.useEffect(() => {
+//     setEachAccordion(props.eachAccordion);
+    
+//   }, [props.eachAccordion]);
+
+//   const handleAddRow = (index) => {
+//     props.setListData(index);
+//   };
+
+//   const clickedIcon = (index) => {
+//     props.clickedIcon(index);
+   
+//   };
+//   const handleDeleteRow = (index) => {
+//     props.deletingRow(index);
+//     //console.log('inDelete Select coming',selected)
+//     //let newSelected=props?.listData.filter((item,indexPosition)=>indexPosition!==index)
+//     //console.log('newSelected',newSelected)
+//     //console.log('one',1)
+//     // console.log('selected States',selected)
+//     // const updatedSelected = { ...selected };
+//     // delete updatedSelected[index];
+//     // console.log('updateSelected',updatedSelected)
+//    // setSelected(newSelected);
+  
+    
+//   };
+
+//   const handleMouseEnter = (index) => {
+//     setIsHovered(true);
+//     setIndex(index);
+//   };
+//   const handleMouseLeave = (index) => {
+//     setIsHovered(null);
+//     setIndex(null);
+//   };
+ 
+//   const handleSelectAllClick = (event) => {
+//     if (event.target.checked) {
+      
+     
+//       const selectedList = [];
+//       scrolledListData.forEach((item, index) => {
+//         selectedList.push(true)
+//       });
+//       setSelected(selectedList);
+
+     
+     
+//       setHeaderCheckbox(true);
+//     } else {
+//       setSelected([]);
+    
+//       setHeaderCheckbox(false);
+//     }
+//   };
+
+ 
+//   const handleClick = (event,index) => {
+//     setSelected((prevAccordionState) => ({
+//       ...prevAccordionState,
+//       [index]: !prevAccordionState[index],
+//     }));
+//   };
+
+
+// const handleDataUpdate = (name, newValue, item, index) => {
+//   const updatedData = scrolledListData.map((dataItem, i) => {
+//     if (i === index) {
+      
+//       return { ...dataItem, [name]: newValue };
+//     } else {
+//       return dataItem;
+//     }
+//   });
+
+
+//   setScrolledListData(updatedData);
+// };
+
+//   return (
+//     <div className={classes.tableContainer}>
+//       <div className={classes.table}>
+//         <TableContainer   className={`${classes.virtualizedTable} ${columns.length === 3 ? "table1" : columns.length === 2 ? "table2": ""}`}>
+//         <TableHead>
+//                     <div className={classes.tableHead}>
+//                 {checkbox && (
+//                    <Checkbox
+                 
+//                    checked={headerCheckbox}
+//                    onChange={handleSelectAllClick}
+                   
+//                     className={
+//                       headerCheckbox
+//                         ? classes.checkedTrue
+//                         : classes.checkedFalse
+//                     }
+//                  />
+                 
+//                 )}
+//                 <Accordion expanded={true} className={classes.accordianStyle}>
+//                   <AccordionSummary className={classes.accordianSummary}  >
+//                     <TableRow className={classes.tableRow}>
+//                       {columns[0].row.map((headCell) => (
+//                         <TableCell
+//                           style={{
+//                             width: headCell.minWidth,
+//                             flexGrow: headCell.flexGrow,
+//                             left: headCell.left,
+//                           }}
+//                           key={headCell.id}
+//                           className={classes.tableCell}
+//                         >
+//                           <div style={{ display: "flex", alignItems: "start" }}>
+//                             <span style={{ lineHeight: "1rem" }}>
+//                               {headCell.label}
+//                             </span>
+//                             {headCell.filter && (
+//                               <FilterListIcon className={classes.filter} />
+//                             )}
+//                           </div>
+//                         </TableCell>
+//                       ))}
+//                     </TableRow>
+//                   </AccordionSummary>
+//                   {columns.map((row, i) => (
+//                     <AccordionDetails className={classes.accordionDetails}>
+//                       <div className={classes.accordionDetailsContainer}>
+//                         <TableRow className={classes.tableRow} key={i}>
+//                           {i > 0
+//                             ? row.row.map((headCell) => (
+//                                 <TableCell
+//                                   style={{
+//                                     width: headCell.minWidth,
+//                                     flexGrow: headCell.flexGrow,
+//                                     left: headCell.left,
+//                                   }}
+//                                   key={headCell.id}
+//                                   className={classes.tableCell}
+//                                 >
+//                                   <div className={classes.tableCellContainer}>
+//                                     <span className={classes.tableCellName}>
+//                                       {headCell.label}
+//                                     </span>
+//                                     {headCell.filter && (
+//                                       <FilterListIcon
+//                                         className={classes.filter}
+//                                       />
+//                                     )}
+//                                   </div>
+//                                 </TableCell>
+//                               ))
+//                             : null}
+//                         </TableRow>
+//                       </div>
+//                     </AccordionDetails>
+//                   ))}
+//                 </Accordion>
+//               </div>
+//         </TableHead>
+//         <TableBody>
+//       {scrolledListData.map((item, index) => {
+//         let accordionOpen = eachAccordion[index];
+//         let isItemSelected = selected[index];
+//         console.log("isItemSelected", isItemSelected);
+
+//         return (
+//           <div
+//             key={index}
+//             onMouseEnter={() => handleMouseEnter(index)}
+//             onMouseLeave={handleMouseLeave}
+//           >
+//             <div className={classes.tableRowContainer}>
+//               {checkbox && (
+//                 <Checkbox
+//                   onClick={(event) => handleClick(event, index)}
+//                   checked={isItemSelected}
+//                   className={
+//                     isItemSelected ? classes.checkedTrue : classes.checkedFalse
+//                   }
+//                 />
+//               )}
+//               <div className={classes.tableRowStyle}>
+//                 <Accordion
+//                   expanded={eachAccordion[index]}
+//                   className={classes.accordion}
+//                   key={index}
+//                 >
+//                       <AccordionSummary className={classes.tableBodyAccordionSummary}>
+//                        <TableRow className={classes.TableRow} key={index}>
+//                           {columns[0].row.map((column) => {
+//                             return (
+//                               <TableCell
+//                                 style={{
+//                                   width: column.minWidth,
+
+//                                   flexGrow: column.flexGrow,
+
+//                                   left: column.left,
+//                                 }}
+//                                 key={column.id}
+//                                 className={classes.tableBodyCell}
+//                               >
+//                                 {column.id === "srNo" && (
+//                                   <div className={classes.sNoContainer}>
+//                                     <Typography className={classes.number}>{`${
+//                                       index + 1
+//                                     }. \u00A0`}</Typography>
+//                                     {item?.mot ? (
+//                                       item.mot === "Land" ||
+//                                       item.mot === "L-Land" ? (
+//                                         <LocalShippingIcon
+//                                           className={classes.landIcon}
+//                                         />
+//                                       ) : item.mot === "Air" ? (
+//                                         <LocalAirportIcon
+//                                           className={classes.airIcon}
+//                                         />
+//                                       ) : (
+//                                         <DirectionsBoatIcon
+//                                           className={classes.shipIcon}
+//                                         />
+//                                       )
+//                                     ) : null}
+//                                   </div>
+//                                 )}
+//                                 {column.id !== "srNo" ? (
+//                                   <TextField
+//                                   placeholder={column.placeholder}
+//                                     variant="standard"
+//                                     disableLine={true}
+//                                     disabled={true}
+//                                     style={{
+//                                       fontFamily: "Inter",
+//                                       fontSize: "14px",
+//                                     }}
+//                                     customClass={classes.textField}
+//                                      //handledata={handleDataUpdate}
+//                                      handledata={(name, value) => handleDataUpdate(name, value, item, index)}
+//                                     name={column.id}
+//                                     value={item[column.id]}
+//                                   />
+//                                 ) : (
+//                                   ""
+//                                 )}
+//                               </TableCell>
+//                             );
+//                           })}
+//                         </TableRow>
+//                       </AccordionSummary>
+//                                          <AccordionDetails className={classes.accordionDetail}>
+//                      {columns.map((row, i) => (
+//                           <TableRow
+//                             className={classes.TableRow2}
+//                             onMouseEnter={() => setIsHovered(true)}
+                           
+//                           >
+//                             {i > 0
+//                               ? row.row.map((column) => {
+//                                   return (
+//                                     <TableCell
+//                                       style={{
+//                                         width: column.minWidth,
+//                                         flexGrow: column.flexGrow,
+//                                         left: column.left,
+//                                       }}
+//                                       key={column.id}
+//                                       className={classes.tableBodyCell}
+//                                     >
+//                                       <TextField
+//                                         variant="standard"
+//                                         disableLine={true}
+//                                         style={{
+//                                           fontFamily: "Inter",
+//                                           fontSize: "14px",
+//                                         }}
+//                                         customClass={classes.textField}
+//                                     // handledata={handleDataUpdate}
+//                                     handledata={(name, value) => handleDataUpdate(name, value, item, index)}
+//                                     placeholder={column.placeholder}
+//                                         name={column.id}
+//                                         value={item[column.id]}
+//                                       />
+//                                     </TableCell>
+//                                   );
+//                                 })
+//                               : null}
+//                           </TableRow>
+//                         ))}
+//                       </AccordionDetails>
+//                 </Accordion>
+//                 {/* Rest of your content */}
+//               </div>
+//             </div>
+//             {true ? (
+//               <Grid
+//                 style={{
+//                   height: "16px",
+//                   display: "flex",
+//                   justifyContent: "center",
+//                   alignItems: "center",
+//                   marginRight: "10px",
+//                 }}
+//               >
+//                 {/* Rest of your content */}
+//               </Grid>
+//             ) : null}
+//           </div>
+//         );
+//       })}
+//     </TableBody>
+
+//         </TableContainer>
+        
+//       </div>
+//     </div>
+//   );
+// }

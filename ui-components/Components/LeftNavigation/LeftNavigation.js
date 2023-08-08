@@ -348,8 +348,13 @@ const handleData = (sectionIds) => {
     return add
   })
   setData(filteredAddData)
-  //setOpenFilter(false)
-  props.setLeftNavigationFields(filteredAddData)
+
+
+const filteredHomeData = filteredAddData.filter((item) => item.checked === true);
+
+console.log(filteredHomeData);
+
+  props.setLeftNavigationFields(filteredHomeData)
   
   
 }

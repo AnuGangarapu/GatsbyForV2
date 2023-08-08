@@ -41,50 +41,51 @@ import statements from "../../Images/statements.svg";
 import SearchTextBox from "../../LeftNavigation/AddSection/SearchInputBox";
 
 function TableVirtuoso(props) {
-  // const [fullAccordianOpen, setFullAccordianOpen] = React.useState(false);
-  // const [eachAccordion, setEachAccordion] = React.useState(() => {
-  //   const initialAccordionState = {};
-  //   props.listData.forEach((item, index) => {
-  //     initialAccordionState[index] = false;
-  //   });
-  //   return initialAccordionState;
-  // });
-  // const [opened, setOpened] = React.useState(props.isOpened);
-  // console.log("table Virtuoso", props);
+  const [fullAccordianOpen, setFullAccordianOpen] = React.useState(false);
+  const [eachAccordion, setEachAccordion] = React.useState(() => {
+    const initialAccordionState = {};
+    props.listData.forEach((item, index) => {
+      initialAccordionState[index] = false;
+    });
+    return initialAccordionState;
+  });
+  const [opened, setOpened] = React.useState(props.isOpened);
+  //console.log("table Virtuoso", props);
 
-  // React.useEffect(() => {
-  //   setOpened(props.isOpened);
-  // }, [props.isOpened]);
+  React.useEffect(() => {
+    setOpened(props.isOpened);
+  }, [props.isOpened]);
 
-  // const clickedIcon = (index) => {
-  //   setEachAccordion((prevAccordionState) => ({
-  //     ...prevAccordionState,
-  //     [index]: !prevAccordionState[index],
-  //   }));
-  // };
+  const clickedIcon = (index) => {
+    setEachAccordion((prevAccordionState) => ({
+      ...prevAccordionState,
+      [index]: !prevAccordionState[index],
+    }));
+  };
+  console.log(props.itemName,'props.itemName')
 
-  // const handleChange = () => {
-  //   // If fullAccordianOpen is true, set eachAccordion state to true for all rows, otherwise set to false for all rows
-  //   setEachAccordion((prevAccordionState) => {
-  //     const updatedAccordionState = {};
-  //     Object.keys(prevAccordionState).forEach((index) => {
-  //       updatedAccordionState[index] = !fullAccordianOpen;
-  //     });
-  //     return updatedAccordionState;
-  //   });
-  //   setFullAccordianOpen((prevValue) => !prevValue);
-  // };
+  const handleChange = () => {
+    // If fullAccordianOpen is true, set eachAccordion state to true for all rows, otherwise set to false for all rows
+    setEachAccordion((prevAccordionState) => {
+      const updatedAccordionState = {};
+      Object.keys(prevAccordionState).forEach((index) => {
+        updatedAccordionState[index] = !fullAccordianOpen;
+      });
+      return updatedAccordionState;
+    });
+    setFullAccordianOpen((prevValue) => !prevValue);
+  };
 
-  // const setListData = (index) => {
-  //   props.setListDataItem(index);
-  // };
-  // const deletingRow = (index) => {
-  //   props.deleteItem(index);
-  //   let accordionStates = { ...eachAccordion };
-  //   delete accordionStates[index];
-  //   console.log("accordionStates", accordionStates);
-  //   setEachAccordion(accordionStates);
-  // };
+  const setListData = (index) => {
+    props.setListDataItem(index);
+  };
+  const deletingRow = (index) => {
+    props.deleteItem(index);
+    let accordionStates = { ...eachAccordion };
+    delete accordionStates[index];
+    console.log("accordionStates", accordionStates);
+    setEachAccordion(accordionStates);
+  };
 
   return (
     <div style={{ marginLeft: props.isOpened ? "231px" : "55px" }}>
@@ -128,8 +129,9 @@ function TableVirtuoso(props) {
         />
       </Grid>
       {/* deletingRow={deletingRow} setListData={setListData}  */}
-      {/* <Suspense fallback={<div>Loading</div>}>
+      <Suspense fallback={<div style={{marginLeft:'120px',marginTop:'40px',color:'blue'}}>Loading</div>}>
         <ListTable
+          key={props.key}
           columns={props.columns}
           listData={props.listData}
           accordion={fullAccordianOpen}
@@ -138,10 +140,13 @@ function TableVirtuoso(props) {
           clickedIcon={clickedIcon}
           eachAccordion={eachAccordion}
         />
-      </Suspense> */}
+      </Suspense>
     </div>
   );
 }
 
 export default TableVirtuoso;
+
+
+
 
