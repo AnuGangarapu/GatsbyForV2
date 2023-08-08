@@ -133,7 +133,7 @@ const TextFields = (props) => {
   const handleDisable = () => {
     setDisable(true)
   }
-  {console.log(value)}
+  console.log(value)
   return (
     <TextField
       autoComplete='off'

@@ -318,8 +318,12 @@ export default function FilterAndSort(props) {
     resultArray = checkedIds.map((index) =>
       index >= 0 && index < listOfResults.length ? listOfResults[index - 1].label : undefined
               );
-
-    console.log(data.label, resultArray )
+   
+      let payload = {key:data.label, selected:resultArray}
+      console.log(payload)
+    
+    
+    
     }
     
     const handleAnyCheckboxClick = (status, newList) => {
