@@ -25,7 +25,7 @@ import addSection from '../Images/addSection.svg'
 
 
 import FilterAndSort from "../FilterAndSort";
-import SearchTextBox from "./AddSection/SearchInputBox";
+import SearchTextBox from "../Inputs/SearchTextBox";
 import AddIcon from "@mui/icons-material/Add";
 
 const invoiceData =[
@@ -480,7 +480,7 @@ const handleAddItem =(event,index) => {
               <Typography className={classes.invoices}>Invoices (8)</Typography>
           </Grid>
         <Grid style={{margin:"7px 0px 17px 16px"}}>
-         <SearchTextBox handleSearchInputChange = {handleSearch}  width={"208px"} dropDown={true} text={"Enter No."}/> {/* */}
+         <SearchTextBox handleSearchInputChange = {handleSearch}  width={"208px"} dropDown={true} text="Enter No."/>
         </Grid>
          <List className={classes.invoiceContainer2} style={{paddingTop:"1px",paddingBottom:"0px",marginLeft:"14px"}}>
         

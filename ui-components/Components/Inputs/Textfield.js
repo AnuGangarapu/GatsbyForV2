@@ -33,7 +33,8 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: "400 !important",
     },
     '& .MuiInput-input':{
-      color: "#050E25 !important",
+      //color: "#050E25 !important",
+      color: '#ffffff',
       fontFamily: "Inter !important",
       fontSize:"12px !important",
       height:"16px !important",
@@ -55,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: "400 !important",
     },
     '& .MuiInput-input':{
-      color: "#050E25 !important",
+      //color: "#050E25 !important",
       fontFamily: "Inter !important",
       fontSize:"12px !important",
       height:"16px !important",
@@ -100,11 +101,15 @@ const useStyles = makeStyles((theme) => ({
 
 const TextFields = (props) => {
   const classes = useStyles(props.styles);
-  const {size,variant, placeholder, mandatory, iconType, helperText, showEndAdornment, showStartAdornment, isDisabled,disableLine,isNormalField ,style,value,name,id,className ,error} = props
+  const {size,variant, placeholder, mandatory, iconType, helperText, showEndAdornment, showStartAdornment, isDisabled,disableLine,isNormalField ,style,name,id,className ,error, value} = props
   const [read, setRead] = React.useState(false)
   const [data, setData] = useState(value)
   const [disable, setDisable] = React.useState(disableLine)
+  
 
+  React.useEffect(() => {
+      setData(props.value)
+  })
 
   const handleMouseEnter = () => {
     if (isDisabled!==true && disable === true) {
@@ -128,7 +133,7 @@ const TextFields = (props) => {
   const handleDisable = () => {
     setDisable(true)
   }
-
+  {console.log(value)}
   return (
     <TextField
       autoComplete='off'
