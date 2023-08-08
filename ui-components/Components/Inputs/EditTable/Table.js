@@ -1,7 +1,8 @@
 //import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Mukta:wght@300&display=swap');
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import { TableVirtuoso } from "react-virtuoso";
-import React from "react";
+
+import React, {Suspense } from 'react';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -288,8 +289,8 @@ export default function ListTable(props) {
     });
     return initialAccordionState;
   });
-  console.log('props.listData',props.listData)
-  console.log('Selected',selected)
+  //console.log('props.listData',props.listData)
+  //console.log('Selected',selected)
  
   //console.log('selectedState in component did mount',selected)
 

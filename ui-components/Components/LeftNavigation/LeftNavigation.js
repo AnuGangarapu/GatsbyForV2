@@ -448,7 +448,7 @@ const handleAddItem =(event,index) => {
           style={{paddingBottom: "0px",paddingTop:"0px",overflowY: "auto",display: "flex",flexDirection: "column",width:open?"228px":"51px",flex: 1,marginLeft:"8px"}}
           className={open ? classes.drawerOpen : classes.drawerClose}
          >
-          {data.map((item) => {
+          {data.map((item , index) => {
             if (item.name === "Invoice Details"  && open===true) {
               return (
                 <ListItem key={item.name} style={{marginBottom:"8px"}}>
@@ -464,11 +464,12 @@ const handleAddItem =(event,index) => {
                 (open && item.checked)?
                 <ListItem button key={item.fieldName} style={{marginBottom:"8px"}}>
                   <ListItemIcon style={{minWidth:"24px",marginRight:"8px"}}>  <img src={item.icon} /> </ListItemIcon>
-                  <ListItemText>{item.fieldName}</ListItemText>
+                  <ListItemText onClick={() => props.handleMenuClick(item.index)} >{item.fieldName}</ListItemText>
+                
                 </ListItem>:
                 item.checked &&
                 <ListItem style={{width:"40px",height:"40px",marginBottom:"8px"}}>
-                <ListItemIcon style={{minWidth:"24px"}}> <img src={item.icon}/> </ListItemIcon> 
+                <ListItemIcon onClick={() => props.handleMenuClick(item.index)}  style={{minWidth:"24px"}}> <img src={item.icon}/> </ListItemIcon> 
                 </ListItem>
               );
             }

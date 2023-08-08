@@ -270,6 +270,11 @@ const homeData = [
     checked: true,
     id: "jobDetails",
     icon: jobDetails,
+    index:0,
+    columns: CommercialTaxDetails,
+    data: CommercialTaxDetailsData,
+    hover: false,
+    index:0
   },
   // {
   //   name: "Invoice Details",
@@ -286,6 +291,7 @@ const homeData = [
     columns: CommercialTaxDetails,
     data: CommercialTaxDetailsData,
     hover: false,
+    index:1
   },
   {
     fieldName: "Exchange Rate",
@@ -296,6 +302,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:2
   },
   {
     fieldName: "Bond Details",
@@ -306,6 +313,7 @@ const homeData = [
     columns: CommercialTaxDetails,
     data: CommercialTaxDetailsData,
     hover: false,
+    index:3
   },
   {
     fieldName: "Certificate Details",
@@ -316,6 +324,7 @@ const homeData = [
     columns: CommercialTaxDetails,
     data: CommercialTaxDetailsData,
     hover: false,
+    index:4
   },
   {
     fieldName: "IGM Details",
@@ -327,6 +336,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:5
   },
   {
     fieldName: "Container Details",
@@ -337,6 +347,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:6
   },
   {
     fieldName: "Other Charges",
@@ -346,6 +357,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:7
   },
   {
     fieldName: "HSS Details",
@@ -356,6 +368,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:8
   },
   {
     fieldName: "End Use",
@@ -366,6 +379,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:9
   },
   {
     fieldName: "Licence Details",
@@ -376,6 +390,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:10
   },
   {
     fieldName: "ReExport",
@@ -386,6 +401,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:11
   },
   {
     fieldName: "Single Window Info",
@@ -396,6 +412,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:12
   },
   {
     fieldName: "Single Window Control",
@@ -406,6 +423,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:13
   },
   {
     fieldName: "Single Window Production",
@@ -416,6 +434,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:14
   },
   {
     fieldName: "Single Window Constutient",
@@ -426,6 +445,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:15
   },
   {
     fieldName: "RODTEP",
@@ -436,37 +456,41 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:16
   },
-  {
-    fieldName: "DFIA",
-    checked: false,
-    id: "dfia",
-    icon: dfia,
-    type: "EditTable",
-    columns: ExchangeRate,
-    data: ExchangeRateData,
-    hover: true,
-  },
-  {
-    fieldName: "DEEC",
-    checked: false,
-    id: "deec",
-    icon: deec,
-    type: "EditTable",
-    columns: ExchangeRate,
-    data: ExchangeRateData,
-    hover: true,
-  },
-  {
-    fieldName: "AR4 Details",
-    checked: false,
-    id: "ar4Details",
-    icon: ar4Details,
-    type: "EditTable",
-    columns: ExchangeRate,
-    data: ExchangeRateData,
-    hover: true,
-  },
+  // {
+  //   fieldName: "DFIA",
+  //   checked: false,
+  //   id: "dfia",
+  //   icon: dfia,
+  //   type: "EditTable",
+  //   columns: ExchangeRate,
+  //   data: ExchangeRateData,
+  //   hover: true,
+  //   index:16
+  // },
+  // {
+  //   fieldName: "DEEC",
+  //   checked: false,
+  //   id: "deec",
+  //   icon: deec,
+  //   type: "EditTable",
+  //   columns: ExchangeRate,
+  //   data: ExchangeRateData,
+  //   hover: true,
+  //   index:17
+  // },
+  // {
+  //   fieldName: "AR4 Details",
+  //   checked: false,
+  //   id: "ar4Details",
+  //   icon: ar4Details,
+  //   type: "EditTable",
+  //   columns: ExchangeRate,
+  //   data: ExchangeRateData,
+  //   hover: true,
+  //   index:18
+  // },
   {
     fieldName: "Third Party Details",
     checked: false,
@@ -476,6 +500,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:17
   },
   {
     fieldName: "Packing Details",
@@ -486,6 +511,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:18
   },
   {
     fieldName: "Cess",
@@ -496,6 +522,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:19
   },
   {
     fieldName: "IGST Payment",
@@ -506,6 +533,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:20
   },
   {
     fieldName: "Drawback Details ",
@@ -516,47 +544,52 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:21
   },
-  {
-    fieldName: "depb",
-    checked: false,
-    id: "depb",
-    icon: depb,
-    type: "EditTable",
-    columns: ExchangeRate,
-    data: ExchangeRateData,
-    hover: true,
-  },
-  {
-    fieldName: "imDetails",
-    checked: false,
-    id: "imDetails",
-    icon: imDetails,
-    type: "EditTable",
-    columns: ExchangeRate,
-    data: ExchangeRateData,
-    hover: true,
-  },
-  {
-    fieldName: "ROSCTL",
-    checked: false,
-    id: "rosctl",
-    icon: rostcl,
-    type: "EditTable",
-    columns: ExchangeRate,
-    data: ExchangeRateData,
-    hover: true,
-  },
-  {
-    fieldName: "EPCG",
-    checked: false,
-    id: "epcg",
-    icon: epcg,
-    type: "EditTable",
-    columns: ExchangeRate,
-    data: ExchangeRateData,
-    hover: true,
-  },
+  // {
+  //   fieldName: "depb",
+  //   checked: false,
+  //   id: "depb",
+  //   icon: depb,
+  //   type: "EditTable",
+  //   columns: ExchangeRate,
+  //   data: ExchangeRateData,
+  //   hover: true,
+  //   index:24
+  // },
+  // {
+  //   fieldName: "imDetails",
+  //   checked: false,
+  //   id: "imDetails",
+  //   icon: imDetails,
+  //   type: "EditTable",
+  //   columns: ExchangeRate,
+  //   data: ExchangeRateData,
+  //   hover: true,
+  //   index:25
+  // },
+  // {
+  //   fieldName: "ROSCTL",
+  //   checked: false,
+  //   id: "rosctl",
+  //   icon: rostcl,
+  //   type: "EditTable",
+  //   columns: ExchangeRate,
+  //   data: ExchangeRateData,
+  //   hover: true,
+  //   index:26
+  // },
+  // {
+  //   fieldName: "EPCG",
+  //   checked: false,
+  //   id: "epcg",
+  //   icon: epcg,
+  //   type: "EditTable",
+  //   columns: ExchangeRate,
+  //   data: ExchangeRateData,
+  //   hover: true,
+  //   index:27
+  // },
   {
     fieldName: "Supporting Documents",
     checked: false,
@@ -566,6 +599,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:22
   },
   {
     fieldName: "Statements",
@@ -576,6 +610,7 @@ const homeData = [
     columns: ExchangeRate,
     data: ExchangeRateData,
     hover: true,
+    index:23
   },
 ];
 
