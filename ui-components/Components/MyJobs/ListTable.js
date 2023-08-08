@@ -260,6 +260,7 @@ export default function ListTable(props) {
                               icon={<FilterListIcon/>}
                               filterType={headCell.filterType}
                               handleData = {handleData}
+                              boxPosition={headCell.boxPosition}
                               />
                             )}
                           </div>
@@ -293,6 +294,7 @@ export default function ListTable(props) {
                                      icon={<FilterListIcon/>}
                                      filterType={headCell.filterType}
                                      handleData={handleData}
+                                     boxPosition={headCell.boxPosition}
                                      />
                                         }
                                   </div>

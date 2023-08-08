@@ -535,7 +535,7 @@ const handleAddItem =(event,index) => {
             />} */}
             <FilterAndSort
             display={props.position}
-                icon={<AddIcon className={classes.iconStyle}/>}
+                icon={<img src={addSection} alt="add Section"/>}
                listData={data}
                handleData={handleData}
                filterName='Add Sections'

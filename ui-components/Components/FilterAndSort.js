@@ -348,7 +348,7 @@ export default function FilterAndSort(props) {
               open={openDialog}
               setOpen={setOpenDialog}
               height='auto'
-              ArrowPosition={data?.filterType === 'date' ? '194px': "16px"} 
+              ArrowPosition={data?.filterType === 'date' ? '194px': (data?.id == 'createdBy' || data?.id === 'update' || data.id === 'time')? data.ArrowPosition: "16px"} 
               //anchorOrigin={{ vertical: 'top', horizontal: 'top' }}
               transform={transform}
               boxPosition={boxPosition}

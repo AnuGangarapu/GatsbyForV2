@@ -286,9 +286,9 @@ const useStyles = makeStyles({
     color: "#FFFFFF",
   },
   auto: {
-    //width: '60px',
+    width: '60px',
     textAlign: "center",
-    marginTop: "-3%",
+    marginTop: "30%",
   },
   dateTextField: {
     "& .MuiInputLabel-root": {
@@ -483,7 +483,7 @@ export function MyRangePickerFooter({
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  label="hour"
+                  placeholder="hour"
                   variant="standard"
                   className={classes.customTextField}
                 />
@@ -515,7 +515,7 @@ export function MyRangePickerFooter({
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  label="min"
+                  placeholder="min"
                   variant="standard"
                   className={classes.customTextField}
                 />
@@ -547,7 +547,7 @@ export function MyRangePickerFooter({
               renderInput={(params) => (
                 <TextField
                   {...params}
-                  label="am/pm"
+                  placeholder="am/pm"
                   variant="standard"
                   className={classes.customTextField}
                 />
@@ -589,7 +589,7 @@ export function MyRangePickerFooter({
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="hour"
+                    placeholder="hour"
                     variant="standard"
                     className={classes.customTextField}
                   />
@@ -621,7 +621,7 @@ export function MyRangePickerFooter({
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="min"
+                    placeholder="min"
                     variant="standard"
                     className={classes.customTextField}
                   />
@@ -653,7 +653,7 @@ export function MyRangePickerFooter({
                 renderInput={(params) => (
                   <TextField
                     {...params}
-                    label="am/pm"
+                    placeholder="am/pm"
                     variant="standard"
                     className={classes.customTextField}
                   />
