@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '20px 0px 0px -8px',
     padding: '16px 16px 16px 16px',
     height: (props) => (props.height ? props.height : '300px'),
-    width: (props) => (props.width ? props.width : '318px'),
+    width: (props) => (props.filterType === 'Date&Time' ? '413px' : props.width ? props.width : '318px'),
     backgroundColor: '#050e25',
     position: 'absolute',
     top: (props) => (props.top ? props.top: '20px'),
@@ -29,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function BasicPopover(props) {
-  const { open, setOpen, width, height, ArrowPosition, ArrowSize, ArrowPlaced , transform, boxPosition, top} = props;
+  const { open, setOpen, width, height, ArrowPosition, ArrowSize, ArrowPlaced , transform, boxPosition, top, filterType} = props;
   const handleClose = () => {
     setOpen(false);
   };
-  const classes = useStyles({ width, height, ArrowPosition, ArrowSize, ArrowPlaced,transform , boxPosition,top});
+  const classes = useStyles({ width, height, ArrowPosition, ArrowSize, ArrowPlaced,transform , boxPosition,top, filterType});
 
   return (
     <div>

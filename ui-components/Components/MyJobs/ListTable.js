@@ -12,6 +12,7 @@ import Joblisttablebody from "./TableBody";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import { makeStyles } from "@mui/styles";
 import Checkbox from "@mui/material/Checkbox";
+import FilterAndSort from "../FilterAndSort";
 //import "./Table.css";
 
 const useStyles = makeStyles(() => ({
@@ -147,6 +148,28 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const myArray = [
+  { id: 1, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
+  { id: 2, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
+  { id: 3, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
+  { id: 4, label: 'BERRY N BLOSSOM THE PVT LTD', checked: false, fieldName: 'BERRY N BLOSSOM THE PVT LTD' },
+  { id: 5, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
+  { id: 6, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
+  { id: 7, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
+  { id: 8, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
+  { id: 9, label: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD', checked: false, fieldName: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD' },
+  { id: 10, label: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD', checked: false, fieldName: 'BERRY N BLOSSOM THE PASTRY LAND PVT LTD' },
+  { id: 11, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
+  { id: 12, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
+  { id: 13, label: 'V-GUARD INDUSTRIES LIMITED', checked: false, fieldName: 'V-GUARD INDUSTRIES LIMITED' },
+  { id: 14, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
+  { id: 15, label: 'TaTa Motors', checked: false, fieldName: 'TaTa Motors' },
+  { id: 16, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
+  { id: 17, label: 'Schneider Electric India', checked: false, fieldName: 'Schneider Electric India' },
+  // Add more checkboxes as needed
+];
+
+
 const TableComponents = {
   Scroller: React.forwardRef((props, ref) => (
     <TableContainer component={Paper} {...props} ref={ref} />
@@ -177,6 +200,8 @@ export default function ListTable(props) {
   const handleChange = () => {
     setHeaderCheckbox(!headerCheckbox);
   };
+
+  const handleData = () => {}
 
   return (
     <div className={classes.tableContainer}>
@@ -229,7 +254,13 @@ export default function ListTable(props) {
                               {headCell.label}
                             </span>
                             {headCell.filter && (
-                              <FilterListIcon className={classes.filter} />
+                              <FilterAndSort 
+                              data={headCell}
+                              listData={myArray}
+                              icon={<FilterListIcon/>}
+                              filterType={headCell.filterType}
+                              handleData = {handleData}
+                              />
                             )}
                           </div>
                         </TableCell>
@@ -255,11 +286,15 @@ export default function ListTable(props) {
                                     <span className={classes.tableCellName}>
                                       {headCell.label}
                                     </span>
-                                    {headCell.filter && (
-                                      <FilterListIcon
-                                        className={classes.filter}
-                                      />
-                                    )}
+                                    {headCell.filter && 
+                                     <FilterAndSort 
+                                     data={headCell}
+                                     listData={myArray}
+                                     icon={<FilterListIcon/>}
+                                     filterType={headCell.filterType}
+                                     handleData={handleData}
+                                     />
+                                        }
                                   </div>
                                 </TableCell>
                               ))

@@ -47,7 +47,7 @@ const data = {
     {
       parentfield: "Importer",
       label: "Add Fields",
-      width: 286,
+      width: 318,
       value: "customerName",
       level: "job",
     },

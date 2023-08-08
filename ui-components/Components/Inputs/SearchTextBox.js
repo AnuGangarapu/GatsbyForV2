@@ -114,7 +114,7 @@ const option = [
     { value: "previousBeNo", label: "Reimport Pre BE No.", level: "item" },
   ];
 export default function SearchTextBox(props) {
-  const {text, width='302px', handleSearchInputChange, dropDown = false,  backgroundColor='transparent', border= '1px solid #EFF0F1', color='#FFFFFF'} = props
+  const {text, width='318px', handleSearchInputChange, dropDown = false,  backgroundColor='transparent', border= '1px solid #EFF0F1', color='#FFFFFF'} = props
     const classes = useStyles()
     const [value, setValue] = useState('');
     const [isTyping, setIsTyping] = useState(false)

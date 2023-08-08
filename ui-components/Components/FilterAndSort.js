@@ -13,7 +13,7 @@ import { useState } from 'react';
 import {Snackbar} from '@mui/material';
 import { Alert } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-//import DatePicker from './DatePicker/DatePIcker'
+import DatePicker from './Inputs/DatePicker/DatePicker'
 import TextFields from './Inputs/Textfield';
 import {Grid} from '@mui/material';
 import Button from './Inputs/Button'
@@ -62,7 +62,7 @@ iconStyle:{
    paddingLeft: 0,
    display: 'flex',
    flexWrap: 'wrap',
-   gap: 6   ,
+   gap: 10  ,
    '& .css-h4y409-MuiList-root':{
       display:'flex',
    }
@@ -198,12 +198,13 @@ checkbox: {
    marginLeft: '8px',
  },
  listDataContainer:{
+   width: '100%',
    paddingTop: 0,
+   height: "192px",
    maxHeight: "192px",
    overflowY: 'scroll',
    '&::-webkit-scrollbar': {
    width: '6px',
-   height: "5px",
    backgroundColor: '',
    borderRadius: '22px',
   
@@ -264,7 +265,7 @@ return(<Box className={classes.failureCard}>
 
 export default function FilterAndSort(props) {
   const {listData, filterName, icon, data, transform, boxPosition, ArrowPlaced, top} = props
-    const [dateSelected, setDateSelected] = useState(false)
+    const [dateSelected, setDateSelected] = useState('')
     const [date, setDate] = useState('')
     const [isChecked, setCheckedStatus] = useState(false)
     const [searchValue, setSearchInput] = useState("")
@@ -312,6 +313,13 @@ export default function FilterAndSort(props) {
     }
 
     props.handleData(checkedIds);
+    let resultArray = [];
+
+    resultArray = checkedIds.map((index) =>
+      index >= 0 && index < listOfResults.length ? listOfResults[index - 1].label : undefined
+              );
+
+    console.log(data.label, resultArray )
     }
     
     const handleAnyCheckboxClick = (status, newList) => {
@@ -320,7 +328,6 @@ export default function FilterAndSort(props) {
     }
     const handleDateTimeSelected = (dateSelected) => {
     setDateSelected(dateSelected)
-    
     }
 
     const handleCancel = () => {
@@ -333,12 +340,9 @@ export default function FilterAndSort(props) {
  <Grid container className={classes.container}>  
         <Grid container className={classes.iconContainer}onClick={handleOpen}>
          {icon}
-        <p className={classes.paragraph3}>{filterName}</p>
+        {(filterName === 'Add Details' || filterName === 'Add Sections') && <p className={classes.paragraph3}>{filterName}</p>}
       </Grid>
-        <Grid style={{ 
-          position: "fixed", marginTop: "-2px",
-           //zIndex: "999" 
-           }}>
+        <Grid style={{position: "fixed", marginTop: "-2px",zIndex: "999"}}>
             <Popover
               className = {classes.popover}
               open={openDialog}
@@ -349,16 +353,18 @@ export default function FilterAndSort(props) {
               transform={transform}
               boxPosition={boxPosition}
               ArrowPlaced={ArrowPlaced}
+              filterType={props.filterType}
               top={top}
             >
             <h1 className={classes.heading}>Filter by</h1>
-            {props.data?.subFilterValues !== undefined ? <> <List classes={{root:classes.searchListContainer}}>{data.subFilterValues.map(each => <SearchTextBox text={each.label} key = {each.label} width={each.width} searchValue = {searchValue}backgroundColor='#242C40' border="none" handleSearchInputChange ={handleSearchInputChange} />)} 
+            {props.data?.subFilterValues !== undefined ? 
+            <> <List classes={{root:classes.searchListContainer}}>{data.subFilterValues.map(each => <SearchTextBox text={each.label} key = {each.label} width={each.width} searchValue = {searchValue}backgroundColor='#242C40' border="none" handleSearchInputChange ={handleSearchInputChange} />)} 
             </List > 
             <p className={classes.results}>{listOfResults?.length} Results</p>
             {listOfResults.length === 0 ? <FailureView/> : <SuccessView listItems={listOfResults} handleAnyCheckboxClick={handleAnyCheckboxClick}/>}
-            </> : 
-                // <DateField dateSelected={dateSelected} filterType={data.filterType} handleDateTimeSelected = {handleDateTimeSelected}/>
-                <h1>DateField</h1>
+            </> 
+            : 
+              <DateField dateSelected={dateSelected} handleDateTimeSelected = {handleDateTimeSelected}/>
             }
           <FooterButtons isChecked = {isChecked} handleCancel={handleCancel} handleApplyClick={handleApplyClick} dateSelected={dateSelected}/>
           </Popover>
@@ -460,10 +466,12 @@ export const SuccessView = ({listItems, handleAnyCheckboxClick}) => {
     return (
         <Grid className={classes.dateFieldContainer}>
         <p className={classes.selectDate}>Select Date</p>
-        <TextFields placeholder = 'From Date & Time - To Date & Time' data = {dateSelected}
+        <TextFields placeholder = {'From Date & Time - To Date & Time'}
+        value = {dateSelected}
             iconType={ <DatePicker handleSelectedDate = {handleDateTimeSelected} numberOfMonths = {2}/>}
             showEndAdornment = {true}
             variant = 'standard'
+            style={{width:'285px'}}
             />
         
         </Grid>
@@ -480,3 +488,4 @@ export const FooterButtons = ({isChecked, dateSelected, handleApplyClick, handle
       </Button>}
       </Box>)
 }
+
