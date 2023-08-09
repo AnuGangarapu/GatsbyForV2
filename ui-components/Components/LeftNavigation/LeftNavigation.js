@@ -469,12 +469,12 @@ const handleAddItem =(event,index) => {
                 (open && item.checked)?
                 <ListItem button key={item.fieldName} style={{marginBottom:"8px"}}>
                   <ListItemIcon style={{minWidth:"24px",marginRight:"8px"}}>  <img src={item.icon} /> </ListItemIcon>
-                  <ListItemText onClick={() => props.handleMenuClick(item.index)} >{item.fieldName}</ListItemText>
+                  <ListItemText onClick={() => props.handleMenuClick(item)} >{item.fieldName}</ListItemText>
                 
                 </ListItem>:
                 item.checked &&
                 <ListItem style={{width:"40px",height:"40px",marginBottom:"8px"}}>
-                <ListItemIcon onClick={() => props.handleMenuClick(item.index)}  style={{minWidth:"24px"}}> <img src={item.icon}/> </ListItemIcon> 
+                <ListItemIcon onClick={() => props.handleMenuClick(item)}  style={{minWidth:"24px"}}> <img src={item.icon}/> </ListItemIcon> 
                 </ListItem>
               );
             }

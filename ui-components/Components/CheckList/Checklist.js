@@ -120,30 +120,74 @@ const data = {
 
 function Checklist() {
   const [isOpened, isSetOpened] = React.useState(true);
-  const [activePage, setActivePage] = useState(0);
-  const pageScrollerRef = useRef();
   const [leftNavigationFields, setLeftNavigationFields] =React.useState(homeData);
+  const [loadedItems, setLoadedItems] = useState([]);
+  const [loadingIndex, setLoadingIndex] = useState(0);
+  const scrollContainerRef = useRef(null);
 
 
   // const debouncedNavigate = debounce((pageNumber) => {
   //   setActivePage(pageNumber);
   // }, 500);
+  // React.useEffect(() => {
+  //   const handleScroll = () => {
+  //     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+  //     if (scrollHeight - (scrollTop + clientHeight) < 100) {
+  //       loadNextItem();
+  //     }
+  //   };
+  
+  //   const loadNextItem = () => {
+  //     const nextIndex = loadedItems.length; // Calculate the next index based on the current length of loadedItems
+  //     if (nextIndex < leftNavigationFields.length) {
+  //       setLoadingIndex(nextIndex);
+  //       setTimeout(() => {
+  //         setLoadedItems((prevLoadedItems) => {
+  //           const newLoadedItems = [...prevLoadedItems];
+  //           newLoadedItems[nextIndex] = nextIndex; // Assign the nextIndex value to the corresponding index
+  //           return newLoadedItems;
+  //         });
+  //         setLoadingIndex(-1);
+  //       }, 1000); // Delay of 1 second
+  //     }
+  //   };
+  
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [loadedItems, leftNavigationFields.length]);
+  const handleScroll = () => {
+    const container = scrollContainerRef.current;
+    if (container) {
+      const { scrollTop, clientHeight, scrollHeight } = container;
+      if (scrollHeight - (scrollTop + clientHeight) < 100) {
+        loadNextItem();
+      }
+    }
+  };
+     const loadNextItem = (item) => {
+      const nextIndex = loadedItems.length;
+       // Calculate the next index based on the current length of loadedItems
+      if (nextIndex < leftNavigationFields.length) {
+        setLoadingIndex(nextIndex);
+        setTimeout(() => {
+          setLoadedItems((prevLoadedItems) => {
+            const newLoadedItems = [...prevLoadedItems];
+            newLoadedItems[nextIndex] = nextIndex; // Assign the nextIndex value to the corresponding index
+            return newLoadedItems;
+          });
+          setLoadingIndex(-1);
+        }, 500); // Delay of 1 second
+      }
+ 
+    };
 
-  const handlePageChange = (pageNumber) => {
-    console.log(pageNumber, "handle pagec change in pageNumber");
-    console.log(pageScrollerRef  , "pagescrollref")
-    // debouncedNavigate(pageNumber);
-    setActivePage(pageNumber);
-  };
-  const handleMenuClick = (pageNumber) => {
-    console.log("pageNumber in Menu click", pageNumber);
-    console.log('pageScrollerRef',pageScrollerRef.current)
-   // pageScrollerRef.current.handlePageChange(pageNumber)
-    //let index=pageNumber.index
-    setActivePage(pageNumber);
-   
-    //console.log("index coming is",pageNumber)
-  };
+  const handleNavigateToPage = (item)=>{
+    let name = item.fieldName
+    document.getElementById(name).scrollIntoView({behavior:"smooth"})
+
+  }
   return (
     <>
       <LeftNavigation
@@ -153,467 +197,47 @@ function Checklist() {
         isSetOpened={isSetOpened}
         data={data}
         setLeftNavigationFields={setLeftNavigationFields}
-        handleMenuClick={handlePageChange}
+        handleMenuClick={handleNavigateToPage}
       />
+      <div ref={scrollContainerRef} style={{ height: '94vh', overflow: 'auto' , scrollBehavior:"smooth" }} onScroll={handleScroll}>
 
-      <ReactPageScroller
-         ref={pageScrollerRef}
-        pageOnChange={handlePageChange}
-        customPageNumber={activePage}
-        renderAllPagesOnFirstRender={true}
-     //   animationTimer={2000}
-        //animationTimerBuffer={2000}
-      >
-        {leftNavigationFields.map((item) => {
-          return item.checked === true ? (
-            <Suspense fallback={<div style={{marginLeft:'120px',marginTop:'40px',color:'red'}} key={item.fieldName}>Loading</div>}>
-            <TableVirtuoso
-              key={item.fieldName}
-              itemName={item.fieldName}
-              icon={item.icon}
-              columns={item.columns}
-              listData={item.data}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-                  </Suspense>
-          ) : null;
-        })}
-      
-      </ReactPageScroller>
-        {/* <ReactPageScroller
-        ref={pageScrollerRef}
-        pageOnChange={handlePageChange}
-        customPageNumber={activePage}
-        renderAllPagesOnFirstRender={true}
-      >
-        <List
-          width={2000} // Adjust the width as needed
-          height={1000} // Adjust the height as needed
-          rowCount={leftNavigationFields.length}
-          rowHeight={1000}
-          rowRenderer={({ index, key, style }) => {
-            const item = leftNavigationFields[index];
-            return (
-              <div key={key} style={style}>
-                {item.checked === true ? (
-                  <TableVirtuoso
-                    key={item.fieldName}
-                    itemName={item.fieldName}
-                    icon={item.icon}
-                    columns={item.columns}
-                    listData={item.data}
-                    checkbox={true}
-                    hover={item.hover}
-                    isOpened={isOpened}
-                  />
-                ) : (
-                  <h1>JOb Details Page</h1>
-                )}
-              </div>
-            );
-          }}
-        />
-      </ReactPageScroller> */}
-      {/* <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            /><TableVirtuoso
-            // key={item.fieldName}
-            itemName={'Job Details'}
-            icon={''}
-            columns={CommercialTaxDetails}
-            listData={CommercialTaxDetailsData}
-            checkbox={true}
-            hover={true}
-            isOpened={isOpened}
-          />
-          <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
+           <AddFields
+         name={"Job Details"}
+         SectionFields={JobDetailsSectionFields}
+         dataInfo={{}}
+         data={data}
+         isOpened={isOpened}
+       />
+     {leftNavigationFields.map((item, index) => {
+       
+       const isLoadedAndChecked = loadedItems.includes(index) && item.checked === true;
+        if (isLoadedAndChecked ) {
+          return (
+            <div id={item.fieldName}>
+            <Suspense fallback={<div style={{ marginLeft: '150px', marginTop: '40px', color: 'red' }} key={isLoadedAndChecked}>Loading</div>} >
               <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            /><TableVirtuoso
-            // key={item.fieldName}
-            itemName={'Job Details'}
-            icon={''}
-            columns={CommercialTaxDetails}
-            listData={CommercialTaxDetailsData}
-            checkbox={true}
-            hover={true}
-            isOpened={isOpened}
-          />
-          <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            />
-            <TableVirtuoso
-              // key={item.fieldName}
-              itemName={'Job Details'}
-              icon={''}
-              columns={CommercialTaxDetails}
-              listData={CommercialTaxDetailsData}
-              checkbox={true}
-              hover={true}
-              isOpened={isOpened}
-            /> */}
+                itemName={item.fieldName}
+                icon={item.icon}
+                columns={item.columns}
+                listData={item.data}
+                checkbox={true}
+                hover={true}
+                isOpened={isOpened}
+              />
+            </Suspense>
+            </div>
+           
+          );
+        } else if (loadingIndex === index) {
+          return (
+            <div style={{ marginLeft: '120px', marginTop: '40px', color: 'red' }} key={item.fieldName}>Loading</div>
+          );
+        }
+        return null;
+        
+      })}
+    
+      </div>
 
     </>
   );

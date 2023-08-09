@@ -265,17 +265,17 @@ const ExchangeRateData = [
 ];
 
 const homeData = [
-  {
-    fieldName: "Job Details",
-    checked: true,
-    id: "jobDetails",
-    icon: jobDetails,
-    index:0,
-    columns: CommercialTaxDetails,
-    data: CommercialTaxDetailsData,
-    hover: false,
-    index:0
-  },
+  // {
+  //   fieldName: "Job Details",
+  //   checked: true,
+  //   id: "jobDetails",
+  //   icon: jobDetails,
+  //   index:0,
+  //   columns: CommercialTaxDetails,
+  //   data: CommercialTaxDetailsData,
+  //   hover: false,
+  //   index:0
+  // },
   // {
   //   name: "Invoice Details",
   //   checked: true,

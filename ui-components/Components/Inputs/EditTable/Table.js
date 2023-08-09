@@ -501,7 +501,7 @@ const handleDataUpdate = (name, newValue, item, index) => {
                     >
                       <AccordionSummary className={classes.tableBodyAccordionSummary}>
                         <TableRow className={classes.TableRow} key={index}>
-                          {columns[0].row.map((column) => {
+                          {columns[0].row.length > 0 ?  (columns[0].row.map((column) => {
                             return (
                               <TableCell
                                 style={{
@@ -558,7 +558,65 @@ const handleDataUpdate = (name, newValue, item, index) => {
                                 )}
                               </TableCell>
                             );
-                          })}
+                          })) :null}
+                          {/* {columns[0].row.map((column) => {
+                            return (
+                              <TableCell
+                                style={{
+                                  width: column.minWidth,
+
+                                  flexGrow: column.flexGrow,
+
+                                  left: column.left,
+                                }}
+                                key={column.id}
+                                className={classes.tableBodyCell}
+                              >
+                                {column.id === "srNo" && (
+                                  <div className={classes.sNoContainer}>
+                                    <Typography className={classes.number}>{`${
+                                      index + 1
+                                    }. \u00A0`}</Typography>
+                                    {item?.mot ? (
+                                      item.mot === "Land" ||
+                                      item.mot === "L-Land" ? (
+                                        <LocalShippingIcon
+                                          className={classes.landIcon}
+                                        />
+                                      ) : item.mot === "Air" ? (
+                                        <LocalAirportIcon
+                                          className={classes.airIcon}
+                                        />
+                                      ) : (
+                                        <DirectionsBoatIcon
+                                          className={classes.shipIcon}
+                                        />
+                                      )
+                                    ) : null}
+                                  </div>
+                                )}
+                                {column.id !== "srNo" ? (
+                                  <TextField
+                                  placeholder={column.placeholder}
+                                    variant="standard"
+                                    disableLine={true}
+                                    disabled={true}
+                                    style={{
+                                      fontFamily: "Inter",
+                                      fontSize: "14px",
+                                    }}
+                                    customClass={classes.textField}
+                                     //handledata={handleDataUpdate}
+                                     handledata={(name, value) => handleDataUpdate(name, value, item, index)}
+                                    name={column.id}
+                                    value={item[column.id]}
+                                  />
+                                ) : (
+                                  ""
+                                )}
+                              </TableCell>
+                            );
+                          })} */}
                         </TableRow>
                       </AccordionSummary>
                       <AccordionDetails className={classes.accordionDetail}>
